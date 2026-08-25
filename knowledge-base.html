@@ -17,7 +17,7 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=103">
+<link rel="stylesheet" href="assets/site.css?v=104">
 <link rel="icon" href="assets/graphzero-mark.svg" type="image/svg+xml">
 </head>
 <body data-surface="light">
@@ -29,9 +29,18 @@
   <!-- The wordmark is the way back to the top of the site, which is why the nav
        carries no entry for this page. -->
   <header class="site-header">
-    <a class="brand" href="index.html" title="/graphzero">
-      <span class="brand__slash">/</span>graphzero
-    </a>
+    <div class="brand-switch" data-identity-switch>
+      <!-- Two identities under comparison, and scaffolding like the hero mark's
+           arrows: drop this wrapper, the .brand-switch rules and the identity
+           block in site.js once one is chosen, leaving the <a> where it is. -->
+      <button class="brand-switch__arrow" type="button" data-identity-step="-1"
+              aria-label="Previous identity">&lsaquo;</button>
+      <a class="brand" href="index.html" title="/graphzero">
+        <span class="brand__slash">/</span><span class="brand__name">graphzero</span>
+      </a>
+      <button class="brand-switch__arrow" type="button" data-identity-step="1"
+              aria-label="Next identity">&rsaquo;</button>
+    </div>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
       <span class="nav-toggle__bar"></span>
@@ -61,6 +70,17 @@
 
     <!-- ABOVE THE FOLD -->
     <section class="hero" id="context-layer">
+      <!-- vongraph's fold. Lazy: the other identity never shows it, and it is
+           the heaviest thing on the page. The shimmer canvas goes over the
+           picture rather than replacing it, so if the script never runs the
+           photograph still stands. -->
+      <img class="hero__plate" alt="" loading="lazy" decoding="async"
+           src="assets/media/hero-dark-1600.jpg"
+           srcset="assets/media/hero-dark-900.jpg 900w,
+                   assets/media/hero-dark-1600.jpg 1600w,
+                   assets/media/hero-dark-2400.jpg 2400w"
+           sizes="100vw" width="2400" height="1359">
+      <canvas class="hero__shimmer" data-shimmer aria-hidden="true"></canvas>
       <div class="wrap hero__inner">
         <!-- Ascending bars, and decoration rather than content: the wordmark in
              the header is what names the company, so this carries no label and
@@ -602,6 +622,6 @@
 
 </div>
 
-<script src="assets/site.js?v=103" defer></script>
+<script src="assets/site.js?v=104" defer></script>
 </body>
 </html>

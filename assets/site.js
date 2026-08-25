@@ -554,3 +554,197 @@
   });
 })();
 
+/* Identity switch — graphzero / vongraph.
+
+   Two names under comparison. The wordmark is the only text that changes; the
+   accent, and the plate on the Knowledge Base fold, follow from the attribute
+   this sets on .page rather than from anything here, so adding a third
+   identity is a CSS block and an entry below.
+
+   Scaffolding: remove this block with the .brand-switch markup and rules once
+   a name is chosen. */
+(function () {
+  'use strict';
+
+  var sw = document.querySelector('[data-identity-switch]');
+  var page = document.querySelector('.page');
+  if (!sw || !page) return;
+
+  var NAMES = ['graphzero', 'vongraph'];
+  var KEY = 'graphzero:identity';
+  var label = sw.querySelector('.brand__name');
+  var brand = sw.querySelector('.brand');
+  if (!label || !brand) return;
+
+  var index = 0;
+  var saved;
+  try { saved = localStorage.getItem(KEY); } catch (e) { saved = null; }
+  /* A stored name that no longer exists falls back to the first, so dropping
+     an identity cannot strand the site on one nothing can switch away from. */
+  var at = NAMES.indexOf(saved);
+  if (at > -1) index = at;
+
+  function apply() {
+    var name = NAMES[index];
+    page.setAttribute('data-identity', name);
+    label.textContent = name;
+    brand.title = '/' + name;
+    try { localStorage.setItem(KEY, name); } catch (e) {}
+  }
+
+  apply();
+
+  sw.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-identity-step]');
+    if (!btn) return;
+    var step = parseInt(btn.dataset.identityStep, 10) || 1;
+    index = (index + step + NAMES.length) % NAMES.length;
+    apply();
+  });
+})();
+
+/* Hero shimmer — vongraph's plate, lit.
+
+   Specks drift across the picture: white squares a pixel or two across that
+   fade up and back down over a second or two each, staggered so a scattering
+   is always mid-life while the rest of the plate stays plain. Individually
+   they are hard pixel artefacts; together, because each fades rather than
+   switches, they read as a shimmer.
+
+   The reference draws the photograph into its own canvas and repaints the
+   whole plate every frame. Here the picture stays a real <img> underneath, so
+   this canvas is transparent and a frame is a clear plus ~48 fillRects.
+
+   Costs kept down rather than assumed cheap: ~24fps, paused when the fold is
+   off screen or the canvas is not being shown, and never started at all under
+   prefers-reduced-motion — where the plate alone is the design. */
+(function () {
+  'use strict';
+
+  var cv = document.querySelector('canvas[data-shimmer]');
+  var page = document.querySelector('.page');
+  if (!cv || !page) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var FRAME_MS = 1000 / 24;
+  var SPECKS = 48;
+
+  var ctx = cv.getContext('2d');
+  if (!ctx) return;
+  var bits = [], raf = null, last = 0, onScreen = true, dpr = 1;
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  /* Most specks are one or two pixels at a few percent opacity; a few are a
+     shade larger and brighter. Without that spread it reads as even static
+     rather than glinting. Deliberately at the edge of noticing: on a plate
+     this dark, anything you can pick out frame by frame reads as dirt. */
+  function spawn(w, h, now) {
+    var loud = Math.random() < 0.15;
+    var size = Math.round(rand(loud ? 2 : 1, loud ? 3 : 2));
+    return {
+      x: Math.round(rand(0, Math.max(0, w - size))),
+      y: Math.round(rand(0, Math.max(0, h - size))),
+      w: size,
+      h: size,
+      peak: loud ? rand(0.15, 0.25) : rand(0.04, 0.12),
+      /* a long wait before each one returns, so only about half the set is
+         alive at any moment and the rest of the plate stays plain */
+      born: now + rand(0, 2600),
+      life: rand(900, 2400)
+    };
+  }
+
+  function size() {
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return false;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return true;
+  }
+
+  function draw(now) {
+    var w = cv.width / dpr, h = cv.height / dpr;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    for (var i = 0; i < bits.length; i++) {
+      var b = bits[i];
+      var age = now - b.born;
+      if (age < 0) continue;
+      if (age > b.life) { bits[i] = spawn(w, h, now); continue; }
+      /* sin over the lifetime: up and back down, so nothing ever pops on */
+      ctx.globalAlpha = Math.sin((age / b.life) * Math.PI) * b.peak;
+      ctx.fillRect(b.x, b.y, b.w, b.h);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function seed() {
+    if (!size()) return false;
+    var w = cv.width / dpr, h = cv.height / dpr;
+    var now = performance.now();
+    bits.length = 0;
+    for (var i = 0; i < SPECKS; i++) {
+      var b = spawn(w, h, now);
+      /* seeded mid-life at staggered phases: spawning the set together leaves
+         them in step, and every so often they all fade out on one frame and
+         the shimmer blinks off */
+      b.born -= Math.random() * (b.life + 260);
+      bits.push(b);
+    }
+    return true;
+  }
+
+  /* Read off the CSS rather than off the attribute: which identity shows the
+     plate is a styling decision, and this way the script does not hold a
+     second copy of it. */
+  function live() {
+    return onScreen && getComputedStyle(cv).display !== 'none';
+  }
+
+  function loop(now) {
+    if (!live()) { raf = null; return; }
+    raf = requestAnimationFrame(loop);
+    if (now - last < FRAME_MS) return;
+    last = now;
+    draw(now);
+  }
+
+  function start() {
+    if (raf || !live()) return;
+    if (!bits.length && !seed()) return;
+    /* One frame up front. Without it the first paint waits on the first
+       animation frame, and the plate arrives bare for a beat on switching. */
+    last = performance.now();
+    draw(last);
+    raf = requestAnimationFrame(loop);
+  }
+
+  function stop() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    if (cv.width) ctx.clearRect(0, 0, cv.width / dpr, cv.height / dpr);
+  }
+
+  function refresh() {
+    if (live()) { bits.length = 0; start(); } else { stop(); }
+  }
+
+  if (window.MutationObserver) {
+    new MutationObserver(refresh).observe(page, {
+      attributes: true, attributeFilter: ['data-identity']
+    });
+  }
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function (entries) {
+      onScreen = entries[0].isIntersecting;
+      if (onScreen) start(); else stop();
+    }, { threshold: 0 }).observe(cv);
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () { if (live()) { bits.length = 0; start(); } }).observe(cv);
+  }
+
+  refresh();
+})();

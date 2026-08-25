@@ -129,6 +129,33 @@
 .brand__slash { color: var(--hl, inherit); }
 
 /* --------------------------------------------------------------------------
+   Second identity — vongraph
+
+   One declaration is the whole colour change: everything that carries the
+   accent reads --hl, so the wordmark's slash, the hero mark and .hl in the
+   headings all follow from here. Declared after the per-page rule above and at
+   the same specificity, so it wins on order.
+   -------------------------------------------------------------------------- */
+.page[data-identity="vongraph"] { --hl: #4d9a9e; }
+
+/* Comparison control, like the hero mark's arrows. Quiet at rest: no fill
+   until the pointer is on one, so the pair does not read as chrome flanking
+   the wordmark. */
+.brand-switch { display: inline-flex; align-items: center; gap: var(--space-2); }
+.brand-switch__arrow {
+  width: 1.5rem; height: 1.5rem;
+  display: grid; place-items: center;
+  border: 0; cursor: pointer;
+  font: inherit; font-size: var(--fs-small); line-height: 1;
+  color: var(--ink-muted);
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--line);
+  border-radius: var(--radius-pill);
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.brand-switch__arrow:hover { color: var(--ink); background: var(--chip); }
+
+/* --------------------------------------------------------------------------
    Shell
    -------------------------------------------------------------------------- */
 .wrap { width: min(var(--container), 100% - var(--gutter) * 2); margin-inline: auto; }
@@ -360,6 +387,45 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
 /* Comparison control, not product chrome. It sits on the panel it changes so
    the two can be judged without the eye leaving the fold. */
 
+
+/* vongraph's Knowledge Base fold: a photographic plate instead of the painted
+   panel. Same box as .hero::before so the fold keeps its shape, and hidden
+   rather than merely covered, so the other identity never carries the
+   download. The shimmer sits over the plate at 2, still under the copy at 3 —
+   the canvas is transparent and carries only the specks, so the picture
+   underneath is never redrawn. */
+.hero__plate,
+.hero__shimmer {
+  display: none;
+  position: absolute;
+  inset: var(--space-2);
+  z-index: 1;
+  width: calc(100% - var(--space-2) * 2);
+  height: calc(100% - var(--space-2) * 2);
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+.hero__shimmer { pointer-events: none; object-fit: fill; }
+.page[data-identity="vongraph"][data-page="knowledge-base"] .hero__plate { display: block; }
+.page[data-identity="vongraph"][data-page="knowledge-base"] .hero__shimmer { display: block; z-index: 2; }
+/* The colour behind the picture while it loads, so the fold is never white. */
+.page[data-identity="vongraph"][data-page="knowledge-base"] {
+  --hero-base: #0a1a1c;
+  --hero-wash: none;
+  --hero-size: auto;
+}
+/* The type reverses out of the plate by re-declaring the contextual tokens,
+   the same route .dark takes, rather than by recolouring each element. The
+   accent goes white here alone: on a plate this dark the teal that carries the
+   identity everywhere else is too close to the picture to hold. */
+.page[data-identity="vongraph"][data-page="knowledge-base"] .hero__inner {
+  color: var(--ink-invert);
+  --heading: var(--ink-invert);
+  --body: var(--ink-muted-invert);
+  --meta: rgba(255, 255, 255, 0.55);
+  --line: rgba(255, 255, 255, 0.22);
+  --hl: #ffffff;
+}
 
 .hero__inner {
   position: relative;
