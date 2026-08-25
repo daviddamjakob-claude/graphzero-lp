@@ -1705,29 +1705,19 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
      zeroing the figure's margin alone leaves it. Spacing between the copy and
      the drawing is set on the figure, in one place. */
   gap: 0;
-  justify-items: center;
-  text-align: center;
+  /* Left-ranged, like the fold this one replaced and like every section under
+     it. The drawing still runs the container's full width; only the copy is
+     held to the page's own edge. */
+  justify-items: start;
 }
-/* Same size it ran at beside the drawing. Stacked it could take the landing
-   page's full 84px, but the section headings under it are at 32 and the fold
-   would then be shouting at them across the gap. */
-.hero--stack .hero__title {
-  font-size: clamp(2.25rem, 4.7vw, 3.75rem);
-  /* 22ch was measured against the copy this fold used to carry. The line the
-     break now decides — "that is really powerful and sovereign" — wants 22.3,
-     so the cap was cutting it by 14px and opening a third line. 24 clears it
-     by 7%, which is the room a metric change would need, and still holds the
-     title well inside the 1137px container rather than letting it run wide. */
-  max-width: 24ch;
-}
-/* Wider than the 46ch body measure: centred, three lines reads as a second
-   statement under the claim, where five would read as a paragraph. */
-.hero--stack .hero__lead { max-width: 54ch; }
-/* The copy block is what the grid centres; these are ordinary blocks inside it,
-   so without this they keep their max-width but sit hard left inside a
-   full-width parent, with only their text ranged centre. */
-.hero--stack .hero__title,
-.hero--stack .hero__lead { margin-inline: auto; }
+/* The display size, and no measure cap: the break decides the first line, so a
+   cap could only force a third one. Both are the landing fold's own — this
+   heading is the page's opening claim and sets at the size that says so. */
+.hero--stack .hero__title { max-width: none; }
+/* The measure the landing lead was fitted to: between 642px and 660px this
+   copy sets in three lines with the closing sentence alone on the last, and
+   54.6ch is the middle of that band, so a small metric change cannot tip it. */
+.hero--stack .hero__lead { max-width: 54.6ch; }
 /* The drawing keeps its size and the title keeps the hero's own 88px above it;
    the air around the drawing is gone entirely. It can carry that: the viewBox
    starts 40 units in and the artwork sits well inside its own box, so the
@@ -1796,20 +1786,11 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
 }
 
 @media (max-width: 900px) {
-  .hero--stack .hero__title { max-width: none; }
   .hero__lead { max-width: var(--measure-body); }
   .hero--stack .hero__figure { margin-top: var(--space-4); }
   .layer-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
-  /* Centred holds while the title sets in two or three long lines. On a phone
-     it sets in four or more short ones, and a ragged-both-sides block reads as
-     a different document from the left-ranged page under it. The copy goes
-     back to the page's own edge; the drawing still runs the full width. */
-  .hero--stack .hero__inner--stack { justify-items: start; text-align: left; }
-  .hero--stack .hero__title,
-  .hero--stack .hero__lead { margin-inline: 0; }
-
   .hero__figure { padding: var(--space-4); }
   .layer-card { padding: var(--space-6); }
 
