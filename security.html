@@ -17,7 +17,7 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=116">
+<link rel="stylesheet" href="assets/site.css?v=118">
 <link rel="icon" href="assets/graphzero-mark.svg" type="image/svg+xml">
 </head>
 <body data-surface="light">
@@ -125,6 +125,63 @@
          follows divides with rules and nothing else, which is also how .cap and
          .showcase already work here. -->
     <section class="wrap sec" id="guarantees">
+      <!-- The five marks on a tray, the way the reference opens its security
+           page. Decoration with a job: the same five things the rows below
+           name, shown before they are explained. Hidden from the reader of the
+           page, because those rows carry the words. -->
+      <div class="trust-stage" aria-hidden="true">
+        <div class="trust-tray">
+          <div class="trust-tile"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rows of facts, one of them held shut. The lock sits on a single row
+             rather than around the whole stack: that is the claim. -->
+        <rect x="2" y="8" width="34" height="7" fill="currentColor"/>
+        <rect x="2" y="28" width="24" height="7" fill="currentColor"/>
+        <rect x="2" y="48" width="34" height="7" fill="currentColor"/>
+        <path d="M38 31.5v-4a6 6 0 0 1 12 0v4" stroke="currentColor" stroke-width="3"/>
+        <rect x="34" y="31.5" width="20" height="15" stroke="currentColor" stroke-width="3"/>
+      </svg></div>
+          <div class="trust-tile"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- A correction proposed, and a person signing it off: the tick is
+             drawn, the figure below it is what makes the tick count. -->
+        <rect x="6" y="4" width="40" height="30" stroke="currentColor" stroke-width="3"/>
+        <path d="M15 19.5l7 7 13-14" stroke="currentColor" stroke-width="3"/>
+        <circle cx="32" cy="45" r="5.5" stroke="currentColor" stroke-width="3"/>
+        <path d="M20 61a12 12 0 0 1 24 0" stroke="currentColor" stroke-width="3"/>
+      </svg></div>
+          <div class="trust-tile"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Knowledge that grows, inside brackets: the growth is the point,
+             the brackets are who it belongs to. -->
+        <path d="M12 4H4v56h8M52 4h8v56h-8" stroke="currentColor" stroke-width="3"/>
+        <rect x="18" y="40" width="8" height="12" fill="currentColor"/>
+        <rect x="30" y="30" width="8" height="22" fill="currentColor"/>
+        <rect x="42" y="16" width="8" height="36" fill="currentColor"/>
+      </svg></div>
+          <div class="trust-tile"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Every claim on a line back to the document it came from. -->
+        <path d="M9 6v52" stroke="currentColor" stroke-width="3"/>
+        <rect x="4" y="9" width="10" height="10" fill="currentColor"/>
+        <rect x="4" y="27" width="10" height="10" fill="currentColor"/>
+        <rect x="4" y="45" width="10" height="10" fill="currentColor"/>
+        <path d="M14 14h14M14 32h14M14 50h14" stroke="currentColor" stroke-width="3"/>
+        <rect x="34" y="6" width="26" height="34" stroke="currentColor" stroke-width="3"/>
+        <path d="M40 16h14M40 24h14M40 32h8" stroke="currentColor" stroke-width="3"/>
+      </svg></div>
+          <div class="trust-tile"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- The ring of twelve, set as squares rather than stars so it belongs
+             to the same drawing as the rest, around the data it encloses. -->
+        <g fill="currentColor">
+          <rect x="29.5" y="2" width="5" height="5"/><rect x="42.5" y="5.5" width="5" height="5"/>
+          <rect x="52" y="15" width="5" height="5"/><rect x="55.5" y="28" width="5" height="5"/>
+          <rect x="52" y="41" width="5" height="5"/><rect x="42.5" y="50.5" width="5" height="5"/>
+          <rect x="29.5" y="54" width="5" height="5"/><rect x="16.5" y="50.5" width="5" height="5"/>
+          <rect x="7" y="41" width="5" height="5"/><rect x="3.5" y="28" width="5" height="5"/>
+          <rect x="7" y="15" width="5" height="5"/><rect x="16.5" y="5.5" width="5" height="5"/>
+        </g>
+        <rect x="21" y="21" width="22" height="22" stroke="currentColor" stroke-width="3"/>
+      </svg></div>
+        </div>
+      </div>
+
       <div class="trust">
         <div class="trust-grid">
         <div class="trust-cell">
@@ -695,6 +752,6 @@
 
 </div>
 
-<script src="assets/site.js?v=116" defer></script>
+<script src="assets/site.js?v=118" defer></script>
 </body>
 </html>

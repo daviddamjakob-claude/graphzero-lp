@@ -2268,6 +2268,63 @@ plainest thing in the drawing rather than the most filled. */
    from the top and left, so whatever the wrap produces, the seams land in the
    right places.
    -------------------------------------------------------------------------- */
+/* The stage: a wide panel with the five marks held on a tray at its centre.
+
+   The reference does this as a single 1040x550 image on a purple gradient, so
+   there is no markup to follow — this is the same idea rebuilt in CSS, which
+   also means the marks can take the accent and follow the identity rather than
+   being baked into a picture. Grey rather than purple, as asked, so the tiles
+   are white-on-grey where the reference's are translucent-on-colour.
+
+   Proportions measured off the reference at 916px wide: tiles 118 square, 15
+   between them, the tray 10-16 of padding around, and roughly 200 of panel
+   above and below it. */
+.trust-stage {
+  margin-top: var(--section-md);
+  border-radius: var(--radius-lg);
+  /* The reference's panel is 1040x550 with a 150-tall tray at its centre, so
+     roughly 200 above and below — 19% of its own width. That height is most
+     of why it reads as a graphic rather than a widget, so it is matched here
+     rather than trimmed. */
+  padding: clamp(3.5rem, 18vw, 14.75rem) var(--space-4);
+  display: grid;
+  place-items: center;
+  background-color: var(--wash-grey-base);
+  /* Not a flat fill: the reference's panel has light moving across it, and the
+     site already has a vocabulary for that in --ground-wash. */
+  background-image:
+    radial-gradient(80% 120% at 78% 8%, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(70% 110% at 12% 96%, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0) 58%);
+}
+.trust-tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9375rem;
+  padding: 0.75rem;
+  border-radius: calc(var(--radius-lg) + 0.5rem);
+  /* Translucent, so the panel's wash carries through it the way the
+     reference's tray carries its gradient. */
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+.trust-tile {
+  width: clamp(4rem, 9.5vw, 7.375rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+.trust-tile svg {
+  display: block;
+  /* 38% of the tile, which is where the reference sets its own marks. */
+  width: 38%;
+  height: auto;
+  color: var(--hl, var(--heading));
+}
+
 .trust {
   background: var(--ground-base);
   border-radius: var(--radius-lg);
