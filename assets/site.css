@@ -124,6 +124,7 @@
    page by being declared there rather than by a rule per component.
    -------------------------------------------------------------------------- */
 .page[data-page="home"],
+.page[data-page="platform-b"],
 .page[data-page="knowledge-base"],
 .page[data-page="security"] { --hl: #0000ff; }
 .hl,
@@ -2478,3 +2479,30 @@ plainest thing in the drawing rather than the most filled. */
   .rotator__item:first-child { opacity: 1; }
   .rotator__item:not(:first-child) { display: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Figure stage — Platform B.
+
+   The grey that used to run behind the whole fold, kept for the drawing alone:
+   the title and lead sit on the page like the Security page's do, and the
+   ground starts under the lead. It reads the hero's own tokens rather than a
+   new colour, so this is the same material the fold was painted in, just
+   drawn around less of it.
+   -------------------------------------------------------------------------- */
+.figure-stage {
+  margin-top: var(--space-12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-4);
+  background-color: var(--hero-base);
+  background-image: var(--hero-wash);
+  background-size: var(--hero-size);
+}
+/* The drawing brought a plate of its own from the two-column layout; inside
+   the stage that would be a box drawn on a box. */
+.figure-stage .hero__figure {
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+.figure-stage .hero__figure svg { display: block; width: 100%; height: auto; }

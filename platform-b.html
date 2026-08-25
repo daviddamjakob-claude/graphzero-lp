@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>graphzero | Platform</title>
+<title>graphzero | Platform B</title>
 <meta name="description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
-<meta property="og:title" content="graphzero | Platform">
+<meta property="og:title" content="graphzero | Platform B">
 <meta property="og:description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="page" data-page="home">
+<div class="page" data-page="platform-b">
 
   <!-- The wordmark is the way back to the top of the site, which is why the nav
        carries no entry for this page. -->
@@ -35,7 +35,7 @@
            block in site.js once one is chosen, leaving the <a> where it is. -->
       <button class="brand-switch__arrow" type="button" data-identity-step="-1"
               aria-label="Previous identity">&lsaquo;</button>
-      <a class="brand" href="#platform" title="/graphzero">
+      <a class="brand" href="index.html" title="/graphzero">
         <span class="brand__slash">/</span><span class="brand__name">graphzero</span>
       </a>
       <button class="brand-switch__arrow" type="button" data-identity-step="1"
@@ -48,8 +48,8 @@
     </button>
 
     <nav class="site-nav" id="site-nav" aria-label="Primary">
-      <a href="#platform" aria-current="page">Platform</a>
-      <a href="platform-b.html">Platform B</a>
+      <a href="index.html">Platform</a>
+      <a href="platform-b.html" aria-current="page">Platform B</a>
       <a href="knowledge-base.html">Knowledge Base</a>
       <a href="security.html">Security</a>
 
@@ -70,27 +70,16 @@
   <main id="main">
 
     <!-- HERO -->
-    <section class="hero hero--stack" id="platform">
-      <div class="wrap hero__inner hero__inner--stack">
-        <div class="hero__copy">
-          <h1 class="display hero__title">Deploy enterprise AI<br> that is <span class="hl">powerful</span> and <span class="hl">sovereign</span></h1>
-          <!-- The fold used to be a title alone, which left it lighter than the
-               section heading underneath it. The sub-title gives the claim a
-               second beat and hands the reader down into the page. -->
-          <p class="lead hero__lead">Our managed infrastructure gives in-house teams and integrators the tools to deploy AI that is really powerful while keeping company knowledge sovereign.<br>European by design, for AI transformations that actually work.</p>
-        </div>
+    <!-- The Security page's fold, on this page's copy: the title and lead on
+         the flat page at the same size and the same air under the header, and
+         the grey kept for the drawing alone rather than run behind the whole
+         thing. -->
+    <section class="wrap sec-plain" id="platform">
+      <h1 class="display plain-title">Deploy enterprise AI<br> that is <span class="hl">powerful</span> and <span class="hl">sovereign</span></h1>
+      <p class="lead plain-lead">Our managed infrastructure gives in-house teams and integrators the tools to deploy AI that is really powerful while keeping company knowledge sovereign.<br>European by design, for AI transformations that actually work.</p>
 
-        <!-- The diagram from the foot of this page, held to its knowledge-base
-             view and stripped of the animation, so the fold shows the shape of
-             the argument and the interactive one below carries the detail. Its
-             ids are suffixed -hero: they are page-global, and the two copies
-             would otherwise fight over the same gradients and filters.
-
-             On a plate, which the landing hero does not need. -->
-        <!-- af-flow2 is not decoration here: every rule the drawing needs is
-             scoped under that class, so without it the whole illustration falls
-             back to default SVG painting — 16px black text, no fills, no
-             hairlines. -->
+      <!-- The ground starts here and stops with the drawing. -->
+      <div class="figure-stage">
         <figure class="hero__figure af-flow2">
           <svg role="img" aria-label="Nine business systems feeding a knowledge base, which answers through Claude, Copilot, ChatGPT or our own assistant." viewBox="0 40 1100 580" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                             <defs>
