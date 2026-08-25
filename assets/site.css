@@ -2388,15 +2388,12 @@ plainest thing in the drawing rather than the most filled. */
    two cards is lit rather than which one exists — which is the point of the
    section: you are meant to see the case you did not choose.
    -------------------------------------------------------------------------- */
-/* Out of the container and across the viewport. .page carries overflow-x:
-   clip, so the 100vw cannot open a horizontal scrollbar. */
-.sec--bleed { padding-inline: 0; }
-.af-flow2--split .af-panel {
-  border-radius: 0;
-  box-shadow: none;
-  background: none;
-  padding: 0;
-}
+/* The drawing is held well inside the panel rather than running its width:
+   with the outcome cards no longer beside it, nothing was stopping it from
+   filling the whole box. 58rem is a shade over the 860px its smallest labels
+   need, so it is as small as it can go and still be read. */
+.af-flow2--split .af-diagram-col { max-width: 58rem; margin-inline: auto; }
+
 /* One column: the card that used to sit beside the drawing is now beneath it,
    so the anchor that pinned it to the drawing's centre is gone with it. */
 .af-flow2--split .af-row { display: block; }
@@ -2442,4 +2439,42 @@ plainest thing in the drawing rather than the most filled. */
 #af-tab-kb:checked ~ .af-panel .af-foot-kb li:hover,
 #af-tab-kb:checked ~ .af-panel .af-foot-kb li:focus-within {
   background: var(--wash-grey-base);
+}
+
+/* --------------------------------------------------------------------------
+   Rotator — one line, one name at a time.
+
+   CSS rather than a script: five items stacked in a single grid cell, each
+   running the same keyframes on a fifth-of-a-cycle delay. Stacked, so the line
+   is as wide as the longest name and nothing below it moves as they change.
+   -------------------------------------------------------------------------- */
+.af-head { margin-bottom: var(--space-8); }
+.rotator {
+  display: grid;
+  /* Its own line: the names differ in width by a factor of three, and inline
+     they would drag the rest of the heading back and forth. */
+  justify-items: start;
+}
+.rotator__item {
+  grid-area: 1 / 1;
+  color: var(--hl, inherit);
+  opacity: 0;
+  animation: rotator-word 12.5s var(--ease) infinite;
+}
+.rotator__item:nth-child(2) { animation-delay: 2.5s; }
+.rotator__item:nth-child(3) { animation-delay: 5s; }
+.rotator__item:nth-child(4) { animation-delay: 7.5s; }
+.rotator__item:nth-child(5) { animation-delay: 10s; }
+@keyframes rotator-word {
+  0%   { opacity: 0; transform: translateY(0.3em); }
+  2.4% { opacity: 1; transform: none; }
+  17%  { opacity: 1; transform: none; }
+  19.4%{ opacity: 0; transform: translateY(-0.3em); }
+  100% { opacity: 0; transform: translateY(0.3em); }
+}
+/* Nothing moves, and the first name simply stands. */
+@media (prefers-reduced-motion: reduce) {
+  .rotator__item { animation: none; }
+  .rotator__item:first-child { opacity: 1; }
+  .rotator__item:not(:first-child) { display: none; }
 }

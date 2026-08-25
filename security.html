@@ -17,7 +17,7 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=127">
+<link rel="stylesheet" href="assets/site.css?v=128">
 <link rel="icon" href="assets/graphzero-mark.svg" type="image/svg+xml">
 </head>
 <body data-surface="light">
@@ -164,7 +164,7 @@
       </div>
     </section>
 
-    <section class="sec sec--bleed" id="architecture">
+    <section class="wrap sec" id="architecture">
       <!-- Imported whole from the source file, markup and scoped styles
            together. Everything it needs is inside it: no script, no external
            asset, the logos inlined as data URIs and the view toggle done with
@@ -177,6 +177,19 @@
            for=/href= suffixed. And AFAS and Exact draw as monogram tiles rather
            than logos, because the source had no verified mark for them &mdash;
            those two are the ones to swap if official assets turn up. -->
+      <h2 class="h3-fixed af-head">One central knowledge base that is compatible with
+        <!-- One line, five names, one at a time. All five stay in the markup:
+             a screen reader reads the list, which is the same claim the
+             animation is making one word at a time. -->
+        <span class="rotator">
+          <span class="rotator__item">Claude.</span>
+          <span class="rotator__item">Copilot.</span>
+          <span class="rotator__item">ChatGPT.</span>
+          <span class="rotator__item"><span data-identity-name>graphzero</span> Search &amp; Agents.</span>
+          <span class="rotator__item">your AI Assistant.</span>
+        </span>
+      </h2>
+
       <div class="embed">
       <div class="af-flow2 af-flow2--split" role="img" aria-label="Two diagrams comparing a direct MCP connection to source systems versus a knowledge base middleware that aggregates all sources before answering.">
 
@@ -620,6 +633,6 @@
 
 </div>
 
-<script src="assets/site.js?v=127" defer></script>
+<script src="assets/site.js?v=128" defer></script>
 </body>
 </html>
