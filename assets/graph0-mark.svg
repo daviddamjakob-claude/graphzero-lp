@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="">
+  <!-- A soft lit sphere: warm cream body deepening away from the light, a
+       brighter patch above centre, and a luminous rim just inside the edge.
+       The very edge returns to a mid tone so the silhouette still holds on the
+       white header rather than dissolving into it. -->
+  <defs>
+    <radialGradient id="g0-body" cx="44%" cy="38%" r="70%">
+      <stop offset="0%"   stop-color="#faf4e8"/>
+      <stop offset="38%"  stop-color="#f0e5d1"/>
+      <stop offset="68%"  stop-color="#e2d0ad"/>
+      <stop offset="90%"  stop-color="#d3bd93"/>
+      <stop offset="100%" stop-color="#c9b189"/>
+    </radialGradient>
+    <radialGradient id="g0-spot" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#fffbf0" stop-opacity=".70"/>
+      <stop offset="100%" stop-color="#fffbf0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g0-rim" cx="50%" cy="50%" r="50%">
+      <stop offset="72%"  stop-color="#fffdf7" stop-opacity="0"/>
+      <stop offset="92%"  stop-color="#fffdf7" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#f6e9cd" stop-opacity=".35"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="32" cy="32" r="31" fill="url(#g0-body)"/>
+  <ellipse cx="35" cy="23" rx="10" ry="8" fill="url(#g0-spot)"/>
+  <circle cx="32" cy="32" r="31" fill="url(#g0-rim)"/>
+</svg>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>graph0 | The toolbox to deploy enterprise AI</title>
+<meta name="description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
+<meta property="og:title" content="graph0 | The toolbox to deploy enterprise AI">
+<meta property="og:description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ?v= on the two files that actually change. Pages serves everything with
+     max-age=600, so without it a browser can pick up new markup while still
+     running ten-minute-old CSS and JS. Bump it in the same commit as an edit
+     to either file. The design-system entry below is upstream and unversioned
+     because nothing here edits it. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="assets/design-system/styles.css">
+<link rel="stylesheet" href="assets/site.css?v=97">
+<link rel="icon" href="assets/graph0-mark.svg" type="image/svg+xml">
+</head>
+<body data-surface="light">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page" data-page="home">
+
+  <!-- The wordmark is the way back to the top of the site, which is why the nav
+       carries no entry for this page. -->
+  <header class="site-header">
+    <a class="brand" href="#platform" title="/graphzero">
+      <span class="brand__slash">/</span>graphzero
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="#platform" aria-current="page">Platform</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="#security">Security</a>
+
+      <!-- Only ever seen in the sheet. The desktop bar has no room for it, and
+           there the same call is one scroll away in the hero. -->
+      <div class="nav-cta">
+        <a class="btn btn--hero" href="mailto:david@ascending.ai?subject=Ascending%20AI">Book a founder call</a>
+      </div>
+    </nav>
+
+    <div class="lang" role="group" aria-label="Language">
+      <button class="lang__opt" type="button" data-lang="en" aria-current="true">EN</button>
+      <button class="lang__opt" type="button" data-lang="de">DE</button>
+      <button class="lang__opt" type="button" data-lang="nl">NL</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="platform">
+      <div class="wrap hero__inner">
+        <!-- Ascending bars, and decoration rather than content: the wordmark in
+             the header is what names the company, so this carries no label and
+             is hidden from the reader of the page.
+
+             Three options under comparison — two drawings in the same 134x117
+             box out of the same solid blocks, bars that widen down the stack
+             and bars held to one width that thicken instead, then no mark at
+             all. The arrows are scaffolding for the decision: drop them, the
+             options not chosen and the .hero__marks rules once one wins. -->
+        <div class="hero__marks" data-mark-switch>
+          <div class="hero__mark-stage">
+            <svg class="hero__mark" data-mark="bars" viewBox="0 0 134 117"
+                 width="134" height="117" aria-hidden="true" focusable="false"
+                 xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="25" height="19"/>
+              <rect x="0" y="37" width="67" height="25"/>
+              <rect x="0" y="78" width="134" height="39"/>
+            </svg>
+            <svg class="hero__mark" data-mark="rules" viewBox="0 0 134 128"
+                 width="134" height="128" aria-hidden="true" focusable="false"
+                 xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="134" height="27"/>
+              <rect x="0" y="40" width="134" height="27"/>
+              <rect x="0" y="80" width="134" height="48"/>
+            </svg>
+            <div class="hero__mark hero__mark--none" data-mark="none"></div>
+          </div>
+          <div class="hero__mark-nav">
+            <button class="hero__mark-arrow" type="button" data-mark-step="-1"
+                    aria-label="Previous logo option">&lsaquo;</button>
+            <button class="hero__mark-arrow" type="button" data-mark-step="1"
+                    aria-label="Next logo option">&rsaquo;</button>
+          </div>
+        </div>
+        <!-- One break, at every width. No measure cap: the break decides the
+             first line, so a cap could only force a third one. -->
+        <h1 class="display"><span class="hl">The toolbox</span><br> to deploy enterprise AI</h1>
+        <!-- Wider than the system's 46ch lead measure, which breaks this copy
+             over four lines. Between 642px and 660px it sets in three with the
+             closing sentence alone on the last; 54.6ch is the middle of that
+             band, so a small metric change cannot tip it either way. Re-measured
+             for Geist — ch is a property of the face, and the old 58.5 was the
+             middle of Inter Tight's band, which is 90px narrower per ch. -->
+        <p class="lead" style="max-width:54.6ch">Our managed infrastructure enables in-house teams and integrators to deploy AI that is <strong>really powerful while keeping company knowledge sovereign.</strong> European by design, for AI transformations that actually work.</p>
+        <div class="hero__cta">
+          <a class="btn btn--hero" href="mailto:david@ascending.ai?subject=Ascending%20AI">Book a founder call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — CHALLENGES: split heading, then the strip whose panels open on
+         hover and squeeze their neighbours. -->
+    <section class="wrap sec" id="challenges">
+      <span class="eyebrow">01 — Challenges</span>
+      <hr class="rule">
+      <div class="split split--start split--pt">
+        <h2 class="h2">Out-of-the-box AI is often insufficient.</h2>
+        <div class="lead-group">
+          <p class="lead">Claude, ChatGPT, Copilot or Langdock are quickly implemented and bring advanced agentic capabilities. The gap</p>
+          <p class="lead">to real impact is a focused strategy and organized change management. Together with a middle layer platform that makes outcomes robust and keeps knowledge secure and sovereign.</p>
+        </div>
+      </div>
+
+      <div class="strip" style="margin-top:var(--space-12)">
+        <button class="strip__panel" type="button">
+          <span class="chip-row strip__tags">
+            <span class="chip-outline">Strategy &amp; Change Management</span>
+          </span>
+          <span class="strip__title">Self-usage without focus, little governance and unclear ROI</span>
+          <span class="strip__body">Lorem ipsum est.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="chip-row strip__tags">
+            <span class="chip-outline">Knowledge Base</span>
+          </span>
+          <span class="strip__title">Enterprise data in siloed systems</span>
+          <span class="strip__body">Lorem ipsum est.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="chip-row strip__tags">
+            <span class="chip-outline">Knowledge Base</span>
+          </span>
+          <span class="strip__title">Inaccurate and unreliable results</span>
+          <span class="strip__body">Lorem ipsum est.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="chip-row strip__tags">
+            <span class="chip-outline">Knowledge Base</span>
+            <span class="chip-outline">LLM</span>
+          </span>
+          <span class="strip__title">Loss of control and exposure of sensitive data</span>
+          <span class="strip__body">Lorem ipsum est.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 02 — SOLUTION. Head and claim run the full measure rather than the
+         split used above, so the two sections do not read as the same block
+         twice. Cards reveal their copy on hover at a fixed height. -->
+    <section class="wrap sec" id="solution">
+      <span class="eyebrow">02 — Solution</span>
+      <hr class="rule">
+      <h2 class="h2 sec-head">We empower organizations to drive their <span class="hl">AI transformation</span>.</h2>
+      <p class="lead sec-head__lead sec-head__lead--full">Teams can focus on strategy &amp; change management — we make sure the technology is not the bottleneck and doesn’t push timelines or budget.</p>
+
+      <div class="grid-4" style="margin-top:var(--space-12)">
+        <article class="card card--ring card--compact card--reveal" tabindex="0">
+          <span class="card-num">01</span>
+          <h3 class="card-reveal__title">Ready to deploy</h3>
+          <p class="small card-reveal__body">We give you instantly what takes months of building — and even then is extremely difficult to deliver at highest security and functionality needs.</p>
+        </article>
+        <article class="card card--ring card--compact card--reveal" tabindex="0">
+          <span class="card-num">02</span>
+          <h3 class="card-reveal__title">Maintenance at scale</h3>
+          <p class="small card-reveal__body">We enable you to participate in maintenance at scale, in an AI ecosystem that is advancing at rapid speed &amp; complexity.</p>
+        </article>
+        <article class="card card--ring card--compact card--reveal" tabindex="0">
+          <span class="card-num">03</span>
+          <h3 class="card-reveal__title">Data intelligence</h3>
+          <p class="small card-reveal__body">Our platform can give you the data and synthesized insights to find and design the use cases that will deliver real business impact.</p>
+        </article>
+        <article class="card card--ring card--compact card--reveal" tabindex="0">
+          <span class="card-num">04</span>
+          <h3 class="card-reveal__title">Modular toolbox</h3>
+          <p class="small card-reveal__body">You get just what you need: A knowledge base with integrations and ingestion that integrates by MCP. The full platform with UI and agents in Slack and MS Teams. Or just integrations / ingestion to build the remaining infrastructure yourself.</p>
+        </article>
+      </div>
+
+      <h3 class="h3-fixed showcase__head" style="padding-top:var(--section-lg)">A modular stack for enterprise AI. Complete or one layer at a time.</h3>
+
+      <div class="showcase">
+        <div class="showcase__text">
+          <div class="showcase__list">
+            <div class="showcase__item">
+              <span class="showcase__num">Module 03</span>
+              <h4 class="showcase__title"><a class="showcase__link" href="knowledge-base.html">Knowledge Graph</a></h4>
+              <p class="small showcase__body">One knowledge base for people and agents, open over MCP: use the best of Claude, Copilot and ChatGPT, while the knowledge stays sovereign.</p>
+            </div>
+            <div class="showcase__item">
+              <span class="showcase__num">Module 02</span>
+              <h4 class="showcase__title">Search &amp; Agents</h4>
+              <p class="small showcase__body">The complete product: knowledge base, web UI, and agents in Teams and Slack on European infrastructure, enabling to design the workflows that bring most impact.</p>
+            </div>
+            <div class="showcase__item">
+              <span class="showcase__num">Module 01</span>
+              <h4 class="showcase__title">Integration &amp; Ingestion, as a service</h4>
+              <p class="small showcase__body">Seamless solutions to complex infrastructure challenges, consumed as a service.</p>
+            </div>
+          </div>
+        </div>
+
+        <figure class="showcase__visual">
+          <figcaption class="showcase__caption">Toolbox illustration &mdash; placeholder</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 03 — TEAM & ECOSYSTEM. -->
+    <section class="wrap sec" id="team">
+      <span class="eyebrow">03 — Team &amp; Ecosystem</span>
+      <hr class="rule">
+      <div class="split split--start split--pt">
+        <h2 class="h2">Made in <span class="hl">Europe</span>, for <span class="hl">Europe</span>.</h2>
+        <div class="lead-group">
+          <p class="lead">We are a pan-European team of AI Engineers based in Amsterdam and Berlin. <span class="pop"><button class="pop__trigger" type="button" aria-expanded="false" aria-controls="pop-recruiting">Reach out to us</button><span class="pop__panel" id="pop-recruiting"><span class="pop__value">recruiting@ascending.ai</span><button class="btn pop__copy" type="button" data-copy="recruiting@ascending.ai">Copy email address</button></span></span> if you want to get in contact and discuss current job openings.</p>
+          <p class="lead">Our mission is to help European companies strengthen their competitive position in a new environment. While pioneering technology of the next AI era that gets humans and agents to work hand in hand, with the human in full control.</p>
+        </div>
+      </div>
+
+      <!-- Images are hotlinked from each publisher rather than copied into this
+           repo, so nothing here republishes someone else's photography. -->
+      <div class="grid-3" style="margin-top:var(--space-12)">
+        <a class="link-card" href="https://fd.nl/tech-en-innovatie/1598537/als-onze-kinderen-opgroeien-met-kunstmatige-intelligentie-wil-je-meer-controle-over-de-modellen" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">Founder Story</h3>
+            <p class="small">Portrait of graph0 Founder &amp; CEO Lennard Zwart and his ambitions with graph0 (formerly Ascending AI) in Het Financieele Dagblad.</p>
+            <span class="vh">Opens fd.nl in a new tab</span>
+          </span>
+          <span class="link-card__media">
+            <img src="https://images.fd.nl/818748-825923.jpeg?auto=format&amp;w=1280&amp;q=45" alt="" loading="lazy">
+          </span>
+        </a>
+        <a class="link-card" href="https://aithos.org/" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">Aithos Research Foundation</h3>
+            <p class="small">As part of the Ascending AI ecosystem we directly benefit from Aithos research on autonomy and pluralism in an age of increasingly powerful AI systems.</p>
+            <span class="vh">Opens aithos.org in a new tab</span>
+          </span>
+          <span class="link-card__media link-card__media--contain">
+            <img src="https://aithos.org/logos/aithos-foundation-black-cropped.svg" alt="" loading="lazy">
+          </span>
+        </a>
+        <a class="link-card" href="https://thestack.ai/" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">The Stack AI Hub</h3>
+            <p class="small">Also as part of the Ascending AI ecosystem we benefit from the network and ecosystem around Amsterdam’s new AI Hub “The Stack”.</p>
+            <span class="vh">Opens thestack.ai in a new tab</span>
+          </span>
+          <span class="link-card__media">
+            <img src="https://thestack.ai/assets/og/the-stack-exterior.jpg" alt="" loading="lazy">
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 04 — SECURITY. The page's one dark block, and the only full-bleed band
+         on it: the ground changes edge to edge while the content stays on the
+         page's own columns. Cards pick up the on-dark fill and hairline from
+         the .dark context rather than being restyled here. -->
+    <section class="sec-dark dark" id="security">
+      <div class="wrap">
+      <span class="eyebrow">04 — Security</span>
+      <hr class="rule">
+      <h2 class="h2 sec-head">Security and Compliance, built in.</h2>
+      <p class="lead sec-head__lead sec-head__lead--full">Ascending was founded on the conviction that European companies and governments are becoming dependent on US AI infrastructure at exactly the moment AI becomes the core of how organisations work. Hence security and compliance to the highest European standards is non-negotiable in every piece of our technology.</p>
+
+      <!-- Compliance -->
+      <div class="stack-16" style="padding-top:var(--space-12)">
+        <span class="eyebrow eyebrow--accent">Compliance</span>
+        <div class="grid-3">
+          <article class="card card--ring" style="gap:var(--space-3)">
+            <h3 class="h4-card">GDPR compliant</h3>
+            <p class="small">Customer data is processed in the EU and handled in line with GDPR.</p>
+          </article>
+          <article class="card card--ring" style="gap:var(--space-3)">
+            <h3 class="h4-card">EU AI Act-ready</h3>
+            <p class="small">Transparent AI interaction. No emotion recognition, no ranking of people, no individual-level analytics.</p>
+          </article>
+          <article class="card card--ring" style="gap:var(--space-3)">
+            <h3 class="h4-card">ISO 27001 <span class="note-line">(in progress)</span></h3>
+            <p class="small">Certification underway; our security management system follows the standard today.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Deployment -->
+      <div class="stack-16" style="padding-top:var(--section-md)">
+        <span class="eyebrow eyebrow--accent">Deployment</span>
+        <div class="grid-3">
+          <article class="card card--ring" style="gap:var(--space-3)">
+            <h3 class="h4-card">Dedicated single-tenant cloud</h3>
+            <p class="small">Your own isolated environment on EU infrastructure.</p>
+          </article>
+          <article class="card card--ring" style="gap:var(--space-3)">
+            <h3 class="h4-card">Bring your own cloud</h3>
+            <p class="small">Runs in your cloud account, in your region, under your controls.</p>
+          </article>
+          <article class="card card--ring card--muted" style="gap:var(--space-3)">
+            <span class="eyebrow">Undecided</span>
+            <h3 class="h4-card">On-premise</h3>
+            <p class="small">On request — the brief marks this third card as conditional.</p>
+          </article>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- The dark band runs on through the outro, so the page ends on black
+       rather than dropping back to white for the last few lines. -->
+  <footer class="footer-band dark">
+    <div class="wrap site-footer">
+      <span>© 2026 Ascending AI B.V. · Amsterdam, NL</span>
+      <div class="chip-row">
+        <span class="chip-outline">GDPR</span>
+        <span class="chip-outline">EU AI Act</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/site.js?v=97" defer></script>
+</body>
+</html>

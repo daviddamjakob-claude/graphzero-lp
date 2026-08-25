@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>graph0 — LinkedIn banner</title>
+<link rel="stylesheet" href="../design-system/styles.css">
+<style>
+/* The design system's semantic layer in this repo is still the green identity;
+   the site neutralises it to monochrome in site.css rather than at the token
+   layer. The banner does not load site.css, so it re-declares the same handful
+   of tokens it reads. Keep in step with the block at the top of site.css. */
+:root{--page:#ffffff;--ink:#000000}
+
+html,body{margin:0;background:#fff}
+.stage{display:grid;place-items:center;min-height:100vh;overflow:hidden}
+.holder{position:relative}
+.banner{transform-origin:top left;position:absolute;top:0;left:0}
+.banner{width:1584px;height:396px;background:var(--page);color:var(--ink);padding:68px 64px 32px;box-sizing:border-box;display:grid;grid-template-rows:1fr auto;gap:16px;font-family:var(--font-sans)}
+.brand-row{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;flex:none}
+.brand-row span{white-space:nowrap}
+.brand-row img{height:20px}
+.brand-row span{font-size:1.25rem;font-weight:400;letter-spacing:-.02em}
+.head{font-size:50px;line-height:1.14;letter-spacing:-.035em;font-weight:500;text-wrap:balance;max-width:none;margin:0}
+.u-powerful{color:#ff6b00;white-space:nowrap}
+.u-sovereign{color:#003399;white-space:nowrap}
+.body-row{display:flex;flex-direction:column;justify-content:flex-start;gap:64px;height:100%}
+.tag-group{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.tags{display:flex;flex-direction:column;gap:12px}
+.tags li{flex:0 0 auto;white-space:nowrap;font-size:16px;font-weight:500;line-height:var(--lh-body);padding:.375rem .875rem;border-radius:var(--radius-pill)}
+.tag-powerful{color:#ff6b00;box-shadow:inset 0 0 0 1px rgba(255,107,0,.55)}
+.tag-sovereign{color:#003399;box-shadow:inset 0 0 0 1px rgba(0,51,153,.55)}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="holder">
+<div class="banner">
+<div class="body-row">
+<h1 class="head">Company knowledge plugged into Claude, Copilot and ChatGPT. That makes AI really <span class="u-powerful">powerful</span> while keeping your knowledge <span class="u-sovereign">sovereign</span>.</h1>
+<div class="tags">
+<ul class="tag-group">
+<li class="tag-powerful">Data from all sources — incl. AFAS, DATEV, etc.</li>
+<li class="tag-powerful">Accurate and reliable outcomes</li>
+<li class="tag-powerful">Faster &amp; cheaper to get to the right answer</li>
+<li class="tag-powerful">Keeps knowledge clean and up to date</li>
+</ul>
+<ul class="tag-group">
+<li class="tag-sovereign">Own the data and the learnings</li>
+<li class="tag-sovereign">Enforce permissions at all levels</li>
+<li class="tag-sovereign">Protect sensitive information</li>
+<li class="tag-sovereign">Always verifiable and auditable</li>
+</ul>
+</div>
+</div>
+<div class="brand-row"><span><strong style="font-weight:500">graph0</strong> — managed infrastructure for enterprise AI deployments</span></div>
+</div>
+</div>
+</div>
+<script>
+// Fit the fixed 1584×396 canvas into the preview window. Export size is unchanged.
+const fit=()=>{const b=document.querySelector('.banner'),h=document.querySelector('.holder');const s=Math.min(1,(window.innerWidth-32)/1584);b.style.transform='scale('+s+')';h.style.width=(1584*s)+'px';h.style.height=(396*s)+'px';};
+fit();addEventListener('resize',fit);
+</script>
+</body>
+</html>
