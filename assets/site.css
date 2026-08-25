@@ -2253,6 +2253,29 @@ plainest thing in the drawing rather than the most filled. */
        .af-flow2 circle > animate{ display:none; }
      }
 
+/* --------------------------------------------------------------------------
+   Plain header — the Security page.
+
+   The reference's shape, this site's type. What is kept from it is the
+   arrangement: no hero panel and no mark, the copy on the flat page, and the
+   graphic directly beneath rather than beside. What is not kept is its type —
+   the heading is .h2, the step section 01 runs at on the Platform page, at the
+   system's one heading weight, and the lead is the ordinary one.
+   -------------------------------------------------------------------------- */
+/* The header is sticky and overlays the page, so without this the title sits
+   under it rather than below it. Matched to the air the folds on the other two
+   pages open with, measured from the header's own bottom edge. */
+.sec-plain { padding-top: clamp(3.5rem, 12.5vw, 10rem); }
+/* The break is the only thing shaping the heading; no measure cap, so a cap
+   cannot fight it. */
+.plain-title { max-width: none; }
+.plain-lead {
+  margin-top: var(--space-6);
+  /* The measure the folds on the other two pages were fitted to. */
+  max-width: 54.6ch;
+}
+.sec-plain .trust-stage { margin-top: var(--space-12); }
+
 /* The stage: the five marks held on a tray, over a lit gradient.
 
    Proportions measured off the reference image (1120x520): the panel at 2.15,
