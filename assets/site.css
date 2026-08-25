@@ -2269,37 +2269,24 @@ plainest thing in the drawing rather than the most filled. */
    right places.
    -------------------------------------------------------------------------- */
 /* --------------------------------------------------------------------------
-   Plain header — the Security page, copied from the reference's own.
+   Plain header — the Security page.
 
-   Every value below is measured off that page at 1280, not chosen: heading
-   48px on 48px at weight 400, lead 18px on 28px capped at 576, 24 between the
-   two and 80 down to the graphic, both centred on the page itself rather than
-   on a panel. The face is the only thing kept from this site.
-
-   Two knowing departures from the design system, both because the brief was to
-   copy: the heading runs at 400 where the system runs one heading weight of
-   500, and the ink is the reference's #191919 rather than our #000.
+   The reference's shape, this site's type. What is kept from it is the
+   arrangement: no hero panel and no mark, the copy on the flat page, and the
+   graphic directly beneath rather than beside. What is not kept is its type —
+   the heading is .h2, the step section 01 runs at on the Platform page, at the
+   system's one heading weight, and the lead is the ordinary one.
    -------------------------------------------------------------------------- */
-.sec-plain {
-  padding-top: clamp(3.5rem, 12.5vw, 10rem);
-  text-align: center;
-}
-.plain-title {
-  font-size: clamp(2rem, 3.75vw, 3rem);
-  line-height: 1;
-  letter-spacing: normal;
-  font-weight: 400;
-  color: #191919;
-  text-wrap: pretty;
-}
+.sec-plain { padding-top: clamp(3.5rem, 12.5vw, 10rem); }
+/* The break is the only thing shaping the heading; no measure cap, so a cap
+   cannot fight it. */
+.plain-title { max-width: none; }
 .plain-lead {
-  margin: 1.5rem auto 0;
-  max-width: 36rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  color: #191919;
+  margin-top: var(--space-6);
+  /* The measure the folds on the other two pages were fitted to. */
+  max-width: 54.6ch;
 }
-.sec-plain .trust-stage { margin-top: 5rem; }
+.sec-plain .trust-stage { margin-top: var(--space-12); }
 
 /* The stage: a wide panel with the five marks held on a tray at its centre.
 
