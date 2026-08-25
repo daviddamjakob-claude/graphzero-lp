@@ -17,7 +17,7 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=118">
+<link rel="stylesheet" href="assets/site.css?v=119">
 <link rel="icon" href="assets/graphzero-mark.svg" type="image/svg+xml">
 </head>
 <body data-surface="light">
@@ -69,62 +69,13 @@
   <main id="main">
 
     <!-- ABOVE THE FOLD -->
-    <section class="hero" id="trust">
-      <div class="wrap hero__inner">
-        <!-- Ascending bars, and decoration rather than content: the wordmark in
-             the header is what names the company, so this carries no label and
-             is hidden from the reader of the page.
-
-             Three options under comparison — two drawings in the same 134x117
-             box out of the same solid blocks, bars that widen down the stack
-             and bars held to one width that thicken instead, then no mark at
-             all. The arrows are scaffolding for the decision: drop them, the
-             options not chosen and the .hero__marks rules once one wins. -->
-        <div class="hero__marks" data-mark-switch>
-          <div class="hero__mark-stage">
-            <svg class="hero__mark" data-mark="bars" viewBox="0 0 134 117"
-                 width="134" height="117" aria-hidden="true" focusable="false"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="25" height="19"/>
-              <rect x="0" y="37" width="67" height="25"/>
-              <rect x="0" y="78" width="134" height="39"/>
-            </svg>
-            <svg class="hero__mark" data-mark="rules" viewBox="0 0 134 128"
-                 width="134" height="128" aria-hidden="true" focusable="false"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="134" height="27"/>
-              <rect x="0" y="40" width="134" height="27"/>
-              <rect x="0" y="80" width="134" height="48"/>
-            </svg>
-            <div class="hero__mark hero__mark--none" data-mark="none"></div>
-          </div>
-          <div class="hero__mark-nav">
-            <button class="hero__mark-arrow" type="button" data-mark-step="-1"
-                    aria-label="Previous logo option">&lsaquo;</button>
-            <button class="hero__mark-arrow" type="button" data-mark-step="1"
-                    aria-label="Next logo option">&rsaquo;</button>
-          </div>
-        </div>
-        <!-- One break, at every width. No measure cap: the break decides the
-             first line, so a cap could only force a third one. -->
-        <h1 class="display">Your <span class="hl">knowledge</span>.<br> Structured to empower AI and ROI.</h1>
-        <!-- Wider than the system's 46ch lead measure, which breaks this copy
-             over four lines. Between 642px and 660px it sets in three with the
-             closing sentence alone on the last; 54.6ch is the middle of that
-             band, so a small metric change cannot tip it either way. Re-measured
-             for Geist — ch is a property of the face, and the old 58.5 was the
-             middle of Inter Tight's band, which is 90px narrower per ch. -->
-        <p class="lead" style="max-width:54.6ch">Our Knowledge Base turns your organization&rsquo;s data into one connected, reasoned and sovereign structure. From there, AI just works &mdash; securely, and with answers you can always trust.</p>
-      </div>
-    </section>
-
-    <!-- WHAT EACH LAYER DOES -->
-
-    <!-- The five guarantees, before the argument that needs them. Hairline
-         cells on the raised ground rather than five cards: the reference this
-         follows divides with rules and nothing else, which is also how .cap and
-         .showcase already work here. -->
-    <section class="wrap sec" id="guarantees">
+    <!-- Copied from the reference's own header, measured at 1280: the heading
+         at 48/48 and weight 400, the lead at 18/28 capped to 576px, 24 between
+         them and 80 down to the graphic, all centred on the flat page rather
+         than on a panel. Only the face is ours. -->
+    <section class="wrap sec-plain" id="trust">
+      <h1 class="plain-title">Your knowledge.<br>Structured to empower AI and ROI.</h1>
+      <p class="plain-lead">Our Knowledge Base turns your organization&rsquo;s data into one connected, reasoned and sovereign structure. From there, AI just works &mdash; securely, and with answers you can always trust.</p>
       <!-- The five marks on a tray, the way the reference opens its security
            page. Decoration with a job: the same five things the rows below
            name, shown before they are explained. Hidden from the reader of the
@@ -182,6 +133,15 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- WHAT EACH LAYER DOES -->
+
+    <!-- The five guarantees, before the argument that needs them. Hairline
+         cells on the raised ground rather than five cards: the reference this
+         follows divides with rules and nothing else, which is also how .cap and
+         .showcase already work here. -->
+    <section class="wrap sec" id="guarantees">
       <div class="trust">
         <div class="trust-grid">
         <div class="trust-cell">
@@ -752,6 +712,6 @@
 
 </div>
 
-<script src="assets/site.js?v=118" defer></script>
+<script src="assets/site.js?v=119" defer></script>
 </body>
 </html>
