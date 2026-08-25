@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>graphzero | Knowledge Base</title>
-<meta name="description" content="The knowledge base: one context layer between your source systems and every AI application.">
-<meta property="og:title" content="graphzero | Knowledge Base">
-<meta property="og:description" content="The knowledge base: one context layer between your source systems and every AI application.">
+<title>graphzero | Security</title>
+<meta name="description" content="Your knowledge, structured so AI can use it and governed so it stays yours: fact-level permissions, a full audit trail, and EU data residency.">
+<meta property="og:title" content="graphzero | Security">
+<meta property="og:description" content="Your knowledge, structured so AI can use it and governed so it stays yours: fact-level permissions, a full audit trail, and EU data residency.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="page" data-page="knowledge-base">
+<div class="page" data-page="security">
 
   <!-- The wordmark is the way back to the top of the site, which is why the nav
        carries no entry for this page. -->
@@ -49,8 +49,8 @@
 
     <nav class="site-nav" id="site-nav" aria-label="Primary">
       <a href="index.html">Platform</a>
-      <a href="knowledge-base.html" aria-current="page">Knowledge Base</a>
-      <a href="security.html">Security</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="security.html" aria-current="page">Security</a>
 
       <!-- Only ever seen in the sheet. The desktop bar has no room for it, and
            there the same call is one scroll away in the hero. -->
@@ -69,18 +69,7 @@
   <main id="main">
 
     <!-- ABOVE THE FOLD -->
-    <section class="hero" id="context-layer">
-      <!-- vongraph's fold. Lazy: the other identity never shows it, and it is
-           the heaviest thing on the page. The shimmer canvas goes over the
-           picture rather than replacing it, so if the script never runs the
-           photograph still stands. -->
-      <img class="hero__plate" alt="" loading="lazy" decoding="async"
-           src="assets/media/hero-dark-1600.jpg"
-           srcset="assets/media/hero-dark-900.jpg 900w,
-                   assets/media/hero-dark-1600.jpg 1600w,
-                   assets/media/hero-dark-2400.jpg 2400w"
-           sizes="100vw" width="2400" height="1359">
-      <canvas class="hero__shimmer" data-shimmer aria-hidden="true"></canvas>
+    <section class="hero" id="trust">
       <div class="wrap hero__inner">
         <!-- Ascending bars, and decoration rather than content: the wordmark in
              the header is what names the company, so this carries no label and
@@ -118,19 +107,102 @@
         </div>
         <!-- One break, at every width. No measure cap: the break decides the
              first line, so a cap could only force a third one. -->
-        <h1 class="display"><span class="hl">Context &amp; Governance</span><br> that empower enterprise AI</h1>
+        <h1 class="display">Your <span class="hl">knowledge</span>.<br> Structured to empower AI and ROI.</h1>
         <!-- Wider than the system's 46ch lead measure, which breaks this copy
              over four lines. Between 642px and 660px it sets in three with the
              closing sentence alone on the last; 54.6ch is the middle of that
              band, so a small metric change cannot tip it either way. Re-measured
              for Geist — ch is a property of the face, and the old 58.5 was the
              middle of Inter Tight's band, which is 90px narrower per ch. -->
-        <p class="lead" style="max-width:54.6ch">Our knowledge base turns your organization&rsquo;s data into one connected, reasoned structure. From there, AI just works &mdash; securely, and with answers you can always trust.</p>
+        <p class="lead" style="max-width:54.6ch">Our Knowledge Base turns your organization&rsquo;s data into one connected, reasoned and sovereign structure. From there, AI just works &mdash; securely, and with answers you can always trust.</p>
       </div>
     </section>
 
     <!-- WHAT EACH LAYER DOES -->
-    <section class="wrap sec" id="layers">
+
+    <!-- The five guarantees, before the argument that needs them. Hairline
+         cells on the raised ground rather than five cards: the reference this
+         follows divides with rules and nothing else, which is also how .cap and
+         .showcase already work here. -->
+    <section class="wrap sec" id="guarantees">
+      <div class="trust">
+        <div class="trust-grid">
+        <div class="trust-cell">
+          <svg class="trust-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rows of facts, one of them held shut. The lock sits on a single row
+             rather than around the whole stack: that is the claim. -->
+        <rect x="2" y="8" width="34" height="7" fill="currentColor"/>
+        <rect x="2" y="28" width="24" height="7" fill="currentColor"/>
+        <rect x="2" y="48" width="34" height="7" fill="currentColor"/>
+        <path d="M38 31.5v-4a6 6 0 0 1 12 0v4" stroke="currentColor" stroke-width="3"/>
+        <rect x="34" y="31.5" width="20" height="15" stroke="currentColor" stroke-width="3"/>
+      </svg>
+          <h3 class="trust-cell__title">Permissions on fact level</h3>
+          <p class="small trust-cell__body">Access is governed down to the individual fact, not the file it arrived in. The assistant can act freely without ever surfacing what a user should not see.</p>
+        </div>
+        <div class="trust-cell">
+          <svg class="trust-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- A correction proposed, and a person signing it off: the tick is
+             drawn, the figure below it is what makes the tick count. -->
+        <rect x="6" y="4" width="40" height="30" stroke="currentColor" stroke-width="3"/>
+        <path d="M15 19.5l7 7 13-14" stroke="currentColor" stroke-width="3"/>
+        <circle cx="32" cy="45" r="5.5" stroke="currentColor" stroke-width="3"/>
+        <path d="M20 61a12 12 0 0 1 24 0" stroke="currentColor" stroke-width="3"/>
+      </svg>
+          <h3 class="trust-cell__title">Correction and maintenance</h3>
+          <p class="small trust-cell__body">The graph watches itself for gaps, contradictions and pages going stale, and drafts the fix. A person approves it before anything changes &mdash; the loop closes on a human, not on a model.</p>
+        </div>
+        <div class="trust-cell">
+          <svg class="trust-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Knowledge that grows, inside brackets: the growth is the point,
+             the brackets are who it belongs to. -->
+        <path d="M12 4H4v56h8M52 4h8v56h-8" stroke="currentColor" stroke-width="3"/>
+        <rect x="18" y="40" width="8" height="12" fill="currentColor"/>
+        <rect x="30" y="30" width="8" height="22" fill="currentColor"/>
+        <rect x="42" y="16" width="8" height="36" fill="currentColor"/>
+      </svg>
+          <h3 class="trust-cell__title">Compounding knowledge, controlled by you</h3>
+          <p class="small trust-cell__body">What the AI learns on top of your data is written back to you, not held by the vendor. You own the knowledge you start with and everything built on it, and you can export all of it.</p>
+        </div>
+        <div class="trust-cell">
+          <svg class="trust-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Every claim on a line back to the document it came from. -->
+        <path d="M9 6v52" stroke="currentColor" stroke-width="3"/>
+        <rect x="4" y="9" width="10" height="10" fill="currentColor"/>
+        <rect x="4" y="27" width="10" height="10" fill="currentColor"/>
+        <rect x="4" y="45" width="10" height="10" fill="currentColor"/>
+        <path d="M14 14h14M14 32h14M14 50h14" stroke="currentColor" stroke-width="3"/>
+        <rect x="34" y="6" width="26" height="34" stroke="currentColor" stroke-width="3"/>
+        <path d="M40 16h14M40 24h14M40 32h8" stroke="currentColor" stroke-width="3"/>
+      </svg>
+          <h3 class="trust-cell__title">Full audit trail and references</h3>
+          <p class="small trust-cell__body">Every answer arrives with its ranked sources and a direct line to the underlying documents. What was retrieved, by whom and when is logged &mdash; accountability built into the answer, not bolted on.</p>
+        </div>
+        <div class="trust-cell">
+          <svg class="trust-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- The ring of twelve, set as squares rather than stars so it belongs
+             to the same drawing as the rest, around the data it encloses. -->
+        <g fill="currentColor">
+          <rect x="29.5" y="2" width="5" height="5"/><rect x="42.5" y="5.5" width="5" height="5"/>
+          <rect x="52" y="15" width="5" height="5"/><rect x="55.5" y="28" width="5" height="5"/>
+          <rect x="52" y="41" width="5" height="5"/><rect x="42.5" y="50.5" width="5" height="5"/>
+          <rect x="29.5" y="54" width="5" height="5"/><rect x="16.5" y="50.5" width="5" height="5"/>
+          <rect x="7" y="41" width="5" height="5"/><rect x="3.5" y="28" width="5" height="5"/>
+          <rect x="7" y="15" width="5" height="5"/><rect x="16.5" y="5.5" width="5" height="5"/>
+        </g>
+        <rect x="21" y="21" width="22" height="22" stroke="currentColor" stroke-width="3"/>
+      </svg>
+          <h3 class="trust-cell__title">EU hosting and data residency</h3>
+          <p class="small trust-cell__body">Hosted in the EU or in your own cloud, on European-owned infrastructure, with no US-owned dependency anywhere in the chain.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The one dark block on this page: the claim and the two layers that
+         answer it, set off from the guarantees above and the detail below. -->
+    <section class="sec-dark sec-dark--inline dark" id="layers">
+      <div class="wrap">
       <h2 class="h2 sec-head" style="max-width:44ch">Companies that make the right architectural choices get the full productivity benefits of AI &mdash; while keeping their knowledge governed, protected, and sovereign.</h2>
 
       <!-- Two columns because the point is that these are two layers, not one
@@ -165,6 +237,7 @@
           <li><strong>Full audit trail.</strong> Logs what was retrieved, by whom, and when — protection and accountability built into every answer.</li>
           </ul>
         </article>
+      </div>
       </div>
     </section>
 

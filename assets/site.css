@@ -124,7 +124,8 @@
    page by being declared there rather than by a rule per component.
    -------------------------------------------------------------------------- */
 .page[data-page="home"],
-.page[data-page="knowledge-base"] { --hl: #0000ff; }
+.page[data-page="knowledge-base"],
+.page[data-page="security"] { --hl: #0000ff; }
 .hl,
 .brand__slash { color: var(--hl, inherit); }
 
@@ -2251,3 +2252,96 @@ plainest thing in the drawing rather than the most filled. */
        .af-flow2 path > animate,
        .af-flow2 circle > animate{ display:none; }
      }
+
+/* --------------------------------------------------------------------------
+   Trust grid — the five guarantees, on the Security page.
+
+   The reference divides its cells with hairlines and nothing else: no card
+   boxes, no radius, no fill. That is why five long descriptions can sit in a
+   row without becoming five boxes, and it is the same move .cap and .showcase
+   already make on the other pages, so it needs no new vocabulary here — only
+   a grid whose cells draw their own edges.
+
+   Five is an awkward number for a grid. Rather than leave a hole, the row
+   count is left to the width: three then two on a wide screen, two then two
+   then one at tablet, one column on a phone. The dividers are drawn per cell
+   from the top and left, so whatever the wrap produces, the seams land in the
+   right places.
+   -------------------------------------------------------------------------- */
+.trust {
+  background: var(--ground-base);
+  border-radius: var(--radius-lg);
+  margin-top: var(--section-md);
+  padding: var(--space-2);
+}
+.trust-grid {
+  display: grid;
+  /* Stated per breakpoint rather than left to auto-fit. auto-fit resolves the
+     count from the available width, which at 1280 gave four columns and put a
+     divider above a cell that was already on the top row — the seams have to
+     be predictable for the rules below to land in the right places. */
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px)  { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.trust-cell {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  padding: var(--space-8);
+  /* Drawn on the cell, not between them: a gap plus a rule cannot know where
+     the row breaks. Every cell draws its top and left edge, and the rules
+     below take back the ones that would fall on the panel's outer edge. */
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+/* One column: no vertical seams at all, and only the first cell is on a top row. */
+.trust-cell { border-left: 0; }
+.trust-cell:first-child { border-top: 0; }
+
+@media (min-width: 640px) {
+  .trust-cell:nth-child(-n + 2) { border-top: 0; }
+  .trust-cell { border-left: 1px solid var(--line); }
+  .trust-cell:nth-child(2n + 1) { border-left: 0; }
+}
+@media (min-width: 1000px) {
+  .trust-cell:nth-child(-n + 3) { border-top: 0; }
+  .trust-cell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  .trust-cell { border-left: 1px solid var(--line); }
+  .trust-cell:nth-child(2n + 1) { border-left: 1px solid var(--line); }
+  .trust-cell:nth-child(3n + 1) { border-left: 0; }
+}
+
+.trust-icon {
+  display: block;
+  width: clamp(3.25rem, 5vw, 4.5rem);
+  height: auto;
+  color: var(--hl, var(--heading));
+}
+.trust-cell__title {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-h3);
+  font-weight: var(--weight-heading);
+  color: var(--heading);
+  text-wrap: pretty;
+}
+.trust-cell__body { max-width: 34ch; color: var(--body); }
+
+/* The dark band, used mid-page rather than as the run into the footer. It
+   rounds all four corners and carries its own bottom margin, where .sec-dark
+   leaves both to the footer that continues it. */
+.sec-dark--inline {
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--section-lg);
+}
+/* The row highlight is a flat light grey, which on this ground would be a
+   flash rather than a highlight. --fill is already the on-dark value inside
+   .dark, so the rows take that instead. */
+.dark .layer-list li:hover,
+.dark .layer-list li:focus-within { background: var(--fill); }
+/* Measured at 2.44:1 against the black — the accent is a light-ground colour
+   and cannot carry an emphasis here. On this ground the emphasis is simply
+   full-strength ink, which is what .dark does with every other accent. */
+.dark { --hl: var(--ink-invert); }
