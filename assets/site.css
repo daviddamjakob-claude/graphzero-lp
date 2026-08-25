@@ -1731,6 +1731,14 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
   .layer-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
+  /* Centred holds while the title sets in two or three long lines. On a phone
+     it sets in four or more short ones, and a ragged-both-sides block reads as
+     a different document from the left-ranged page under it. The copy goes
+     back to the page's own edge; the drawing still runs the full width. */
+  .hero--stack .hero__inner--stack { justify-items: start; text-align: left; }
+  .hero--stack .hero__title,
+  .hero--stack .hero__lead { margin-inline: 0; }
+
   .hero__figure { padding: var(--space-4); }
   .layer-card { padding: var(--space-6); }
 
