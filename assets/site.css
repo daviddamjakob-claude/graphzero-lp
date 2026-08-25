@@ -2377,3 +2377,69 @@ plainest thing in the drawing rather than the most filled. */
    and cannot carry an emphasis here. On this ground the emphasis is simply
    full-strength ink, which is what .dark does with every other accent. */
 .dark { --hl: var(--ink-invert); }
+
+/* --------------------------------------------------------------------------
+   Flow diagram, split variant — the Security page.
+
+   Same markup and the same radios; what changes is where the parts sit. The
+   drawing runs the page edge to edge with no ring around it, and the two
+   outcome cards move under it side by side, both always drawn. The toggle
+   still switches which drawing is shown, but now it also decides which of the
+   two cards is lit rather than which one exists — which is the point of the
+   section: you are meant to see the case you did not choose.
+   -------------------------------------------------------------------------- */
+/* Out of the container and across the viewport. .page carries overflow-x:
+   clip, so the 100vw cannot open a horizontal scrollbar. */
+.sec--bleed { padding-inline: 0; }
+.af-flow2--split .af-panel {
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+  padding: 0;
+}
+/* One column: the card that used to sit beside the drawing is now beneath it,
+   so the anchor that pinned it to the drawing's centre is gone with it. */
+.af-flow2--split .af-row { display: block; }
+.af-flow2--split .af-diagram-col { flex: none; }
+
+.af-flow2--split .af-toggle {
+  position: static;
+  width: auto;
+  margin: var(--space-6) auto 0;
+  justify-content: center;
+}
+.af-flow2--split .af-foot {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-6) auto 0;
+  /* The cards sit on the page's own columns even though the drawing above
+     them does not. */
+  width: min(var(--container), 100% - var(--gutter) * 2);
+}
+@media (min-width: 760px) {
+  .af-flow2--split .af-foot { grid-template-columns: 1fr 1fr; }
+}
+.af-flow2--split .af-foot .af-bullets-col {
+  position: static;
+  transform: none;
+  /* Not a state the pointer can reach — it is set by the toggle — so the
+     transition is on the properties the toggle actually changes. */
+  transition: opacity var(--dur) var(--ease), filter var(--dur) var(--ease);
+  opacity: 0.38;
+  filter: grayscale(1);
+}
+#af-tab-direct:checked ~ .af-panel .af-foot-direct,
+#af-tab-kb:checked ~ .af-panel .af-foot-kb {
+  opacity: 1;
+  filter: none;
+}
+/* The rows in a card nobody selected should not answer the pointer: hover is
+   switched off for both and given back to whichever one is lit. */
+.af-flow2--split .af-foot .af-bullets-col li:hover,
+.af-flow2--split .af-foot .af-bullets-col li:focus-within { background: none; }
+#af-tab-direct:checked ~ .af-panel .af-foot-direct li:hover,
+#af-tab-direct:checked ~ .af-panel .af-foot-direct li:focus-within,
+#af-tab-kb:checked ~ .af-panel .af-foot-kb li:hover,
+#af-tab-kb:checked ~ .af-panel .af-foot-kb li:focus-within {
+  background: var(--wash-grey-base);
+}

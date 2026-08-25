@@ -17,7 +17,7 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=126">
+<link rel="stylesheet" href="assets/site.css?v=127">
 <link rel="icon" href="assets/graphzero-mark.svg" type="image/svg+xml">
 </head>
 <body data-surface="light">
@@ -164,7 +164,7 @@
       </div>
     </section>
 
-    <section class="wrap sec" id="architecture">
+    <section class="sec sec--bleed" id="architecture">
       <!-- Imported whole from the source file, markup and scoped styles
            together. Everything it needs is inside it: no script, no external
            asset, the logos inlined as data URIs and the view toggle done with
@@ -178,16 +178,12 @@
            than logos, because the source had no verified mark for them &mdash;
            those two are the ones to swap if official assets turn up. -->
       <div class="embed">
-      <div class="af-flow2" role="img" aria-label="Two diagrams comparing a direct MCP connection to source systems versus a knowledge base middleware that aggregates all sources before answering.">
+      <div class="af-flow2 af-flow2--split" role="img" aria-label="Two diagrams comparing a direct MCP connection to source systems versus a knowledge base middleware that aggregates all sources before answering.">
 
         <input type="radio" id="af-tab-direct" name="af-tabs2" class="af-radio">
         <input type="radio" id="af-tab-kb" name="af-tabs2" class="af-radio" checked>
 
         <div class="af-panel">
-          <div class="af-toggle">
-            <label for="af-tab-direct" class="af-toggle-opt af-opt-direct">One-to-one connections</label>
-            <label for="af-tab-kb" class="af-toggle-opt af-opt-kb">Knowledge Base as middleware</label>
-          </div>
 
           <!-- ================= VIEW 1 — One-to-one connections ================= -->
           <div class="af-view af-view-direct">
@@ -372,12 +368,6 @@
                 </svg>
               </div>
         
-            <div class="af-bullets-anchor">
-              <div class="af-bullets-col" style="top:47.414%">
-                <p class="af-bullets-title">Ungoverned access, compromised outcomes</p>
-                <ul class="af-bullets"><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Incomplete answers</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Outdated, contradicting information</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Sensitive data reaches the wrong user</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Non-European vendor gets ungated access</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>New knowledge stays locked with the vendor</span></li></ul>
-              </div>
-            </div>
             </div>
           </div>
 
@@ -496,13 +486,25 @@
                 </svg>
               </div>
         
-            <div class="af-bullets-anchor">
-              <div class="af-bullets-col" style="top:47.414%">
+            </div>
+          </div>
+          <div class="af-toggle">
+            <label for="af-tab-direct" class="af-toggle-opt af-opt-direct">One-to-one connections</label>
+            <label for="af-tab-kb" class="af-toggle-opt af-opt-kb">Knowledge Base as middleware</label>
+          </div>
+          <!-- Both outcomes, always on the page: the toggle changes which
+               drawing is shown and which of these two is lit, rather than
+               swapping one card for another. Seeing the case you did not
+               pick, greyed, is the comparison the section is making. -->
+          <div class="af-foot">
+            <div class="af-bullets-col af-foot-direct">
+                <p class="af-bullets-title">Ungoverned access, compromised outcomes</p>
+                <ul class="af-bullets"><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Incomplete answers</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Outdated, contradicting information</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Sensitive data reaches the wrong user</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>Non-European vendor gets ungated access</span></li><li><svg class="af-bullet-icon af-bullet-icon-con" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5.3 5.3l5.4 5.4M10.7 5.3l-5.4 5.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg><span>New knowledge stays locked with the vendor</span></li></ul>
+              </div>
+            <div class="af-bullets-col af-foot-kb">
                 <p class="af-bullets-title">Full context with built-in protection</p>
                 <ul class="af-bullets"><li><svg class="af-bullet-icon af-bullet-icon-pro" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Complete, ranked answers</span></li><li><svg class="af-bullet-icon af-bullet-icon-pro" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Consistent, current knowledge</span></li><li><svg class="af-bullet-icon af-bullet-icon-pro" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sensitivity protected by fact-level permissions</span></li><li><svg class="af-bullet-icon af-bullet-icon-pro" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Source systems shielded from non-European infrastructure</span></li><li><svg class="af-bullet-icon af-bullet-icon-pro" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.3l2 2 4-4.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Enterprise owns its compounding knowledge</span></li></ul>
               </div>
-            </div>
-            </div>
           </div>
         </div>
       </div>
@@ -618,6 +620,6 @@
 
 </div>
 
-<script src="assets/site.js?v=126" defer></script>
+<script src="assets/site.js?v=127" defer></script>
 </body>
 </html>
