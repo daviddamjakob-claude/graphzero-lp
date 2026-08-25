@@ -2389,11 +2389,19 @@ plainest thing in the drawing rather than the most filled. */
    two cards is lit rather than which one exists — which is the point of the
    section: you are meant to see the case you did not choose.
    -------------------------------------------------------------------------- */
-/* The drawing is held well inside the panel rather than running its width:
-   with the outcome cards no longer beside it, nothing was stopping it from
-   filling the whole box. 58rem is a shade over the 860px its smallest labels
-   need, so it is as small as it can go and still be read. */
-.af-flow2--split .af-diagram-col { max-width: 58rem; margin-inline: auto; }
+/* One box for all three parts. They had drifted onto three different widths:
+   the drawing capped and centred, the toggle spanning the panel's full inner
+   width, and the cards inset by a second gutter left over from when the panel
+   ran the viewport. 58rem is a shade over the 860px the drawing's smallest
+   labels need, so it is as narrow as it can go and still be read — and the
+   toggle and the cards now share its edges exactly. */
+.af-flow2--split .af-diagram-col,
+.af-flow2--split .af-toggle,
+.af-flow2--split .af-foot {
+  width: 100%;
+  max-width: 58rem;
+  margin-inline: auto;
+}
 
 /* One column: the card that used to sit beside the drawing is now beneath it,
    so the anchor that pinned it to the drawing's centre is gone with it. */
@@ -2402,17 +2410,13 @@ plainest thing in the drawing rather than the most filled. */
 
 .af-flow2--split .af-toggle {
   position: static;
-  width: auto;
-  margin: var(--space-6) auto 0;
+  margin-top: var(--space-6);
   justify-content: center;
 }
 .af-flow2--split .af-foot {
   display: grid;
   gap: var(--space-4);
-  margin: var(--space-6) auto 0;
-  /* The cards sit on the page's own columns even though the drawing above
-     them does not. */
-  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-top: var(--space-6);
 }
 @media (min-width: 760px) {
   .af-flow2--split .af-foot { grid-template-columns: 1fr 1fr; }
@@ -2506,3 +2510,7 @@ plainest thing in the drawing rather than the most filled. */
   box-shadow: none;
 }
 .figure-stage .hero__figure svg { display: block; width: 100%; height: auto; }
+
+/* The drawing answers the two tables directly above it, so the section space
+   between them read as a break in an argument that has not finished. */
+.page[data-page="security"] #architecture { padding-top: 0; }
