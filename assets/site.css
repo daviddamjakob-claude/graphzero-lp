@@ -478,6 +478,10 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
 .hero__mark-arrow:hover { color: var(--ink); background: var(--chip); }
 
 .hero__cta { display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap; }
+/* The stacked fold's grid runs at gap 0 — the spacing between the copy and the
+   drawing is set on the figure — so the actions carry their own air, a step
+   wider than the one between the title and the lead. */
+.hero--stack .hero__cta { margin-top: var(--space-8); }
 /* The reference's call to action: a squarer corner than the system's pill, and
    the label set small, spaced and upper case so it reads as a control rather
    than a sentence. */
