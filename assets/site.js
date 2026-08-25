@@ -572,9 +572,12 @@
 
   var NAMES = ['graphzero', 'vongraph'];
   var KEY = 'graphzero:identity';
-  var label = sw.querySelector('.brand__name');
   var brand = sw.querySelector('.brand');
-  if (!label || !brand) return;
+  if (!brand) return;
+  /* Every place the name is written out, not just the wordmark: the diagram's
+     fourth assistant tile is ours too, and hard-coding one name there would
+     leave it wrong under the other identity. */
+  var labels = document.querySelectorAll('.brand__name, [data-identity-name]');
 
   var index = 0;
   var saved;
@@ -587,7 +590,7 @@
   function apply() {
     var name = NAMES[index];
     page.setAttribute('data-identity', name);
-    label.textContent = name;
+    for (var i = 0; i < labels.length; i++) labels[i].textContent = name;
     brand.title = '/' + name;
     try { localStorage.setItem(KEY, name); } catch (e) {}
   }
