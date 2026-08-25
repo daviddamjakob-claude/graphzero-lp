@@ -1713,7 +1713,12 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
    would then be shouting at them across the gap. */
 .hero--stack .hero__title {
   font-size: clamp(2.25rem, 4.7vw, 3.75rem);
-  max-width: 22ch;
+  /* 22ch was measured against the copy this fold used to carry. The line the
+     break now decides — "that is really powerful and sovereign" — wants 22.3,
+     so the cap was cutting it by 14px and opening a third line. 24 clears it
+     by 7%, which is the room a metric change would need, and still holds the
+     title well inside the 1137px container rather than letting it run wide. */
+  max-width: 24ch;
 }
 /* Wider than the 46ch body measure: centred, three lines reads as a second
    statement under the claim, where five would read as a paragraph. */
