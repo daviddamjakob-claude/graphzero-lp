@@ -370,14 +370,15 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
   gap: var(--space-8);
   justify-items: start;
 }
-/* The landing fold alone. The Knowledge Base one is a stack that has to end
-   inside the first screen and cannot afford this. */
-.page[data-page="home"] .hero__inner { padding-block: clamp(5rem, 14vh, 10rem); }
+/* The left-ranged fold alone, whichever page carries it. The stacked one has
+   to end inside the first screen and cannot afford this — which is why the air
+   is keyed to the layout and not to the page. */
+.hero:not(.hero--stack) .hero__inner { padding-block: clamp(5rem, 14vh, 10rem); }
 
 /* The mark, and with it the fold's height: the type and padding are fixed, so
    whether this is drawn is what sets how deep the first screen runs. */
 .hero__marks { display: none; }
-.page[data-page="home"] .hero__marks {
+.hero__inner .hero__marks {
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -1849,7 +1850,344 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
   .hero__inner { gap: var(--space-12); }
   /* The extra air is a desktop instruction. On a phone the fold is already the
      whole screen, so it keeps the padding it had. */
-  .page[data-page="home"] .hero__inner { padding-block: clamp(4rem, 11vh, 7.5rem); }
+  .hero:not(.hero--stack) .hero__inner { padding-block: clamp(4rem, 11vh, 7.5rem); }
   .sec { padding-top: var(--section-md); }
   .site-footer { flex-direction: column; align-items: flex-start; }
 }
+
+
+/* --------------------------------------------------------------------------
+   Flow diagram (.af-flow2)
+
+   Lived inline on the Knowledge Base page while it was the only thing drawing
+   it. Both folds use it now — the landing page's, and the interactive one at
+   the foot of the Knowledge Base page — so it moves here rather than being
+   duplicated into two documents. Every rule is scoped under .af-flow2: without
+   that class the illustration falls back to default SVG painting, which is
+   16px black text, no fills and no hairlines.
+   -------------------------------------------------------------------------- */
+     .af-flow2{
+       /* Every one of these now reads the site's semantic layer instead of
+          carrying its own value, so the component follows the page rather
+          than approximating it. The originals are kept in the comments as
+          a record of what was replaced.
+
+          Note --af-muted: the system has one muted ink, not two. The third
+          tier this used (#8b8b94) is gone and de-emphasis is left to the
+          opacity the component already applies to inactive chips. */
+       --af-ink:var(--ink);                 /* was #131316 */
+       --af-ink-soft:var(--ink-muted);      /* was #54545c */
+       --af-muted:var(--ink-muted);         /* was #8b8b94, a third ink */
+       --af-line:var(--ink);
+       --af-panel-bg:var(--surface);
+       --af-panel-border:var(--hairline);   /* was #e4e4e9 */
+       --af-card-bg:var(--surface);
+       --af-card-border:var(--hairline);    /* was #dcdce2 */
+       --af-track-bg:var(--chip);           /* was #f0f0f3 */
+       --af-font:var(--font-sans);
+       /* The panel's inline padding, named because the toggle hangs off the
+          same edge and a literal in two places drifts apart the moment one
+          breakpoint changes it — which is exactly what had happened. */
+       --af-pad-x:28px;
+       /* Matches .btn--hero. It was written against --green-900 (#06180f),
+          which is the identity this page layer neutralises — the accent
+          resolves to black here, so the selected pill was quietly dark
+          green on an otherwise monochrome page. */
+       --af-cta-bg:var(--accent);
+       --af-cta-ink:var(--accent-ink);
+       --af-cta-radius:var(--radius-sm);
+       --af-cta-ease:var(--ease);
+       width:100%;
+       max-width:1280px;
+       margin:0 auto;
+       box-sizing:border-box;
+     }
+     .af-flow2 *{box-sizing:border-box;}
+     .af-flow2{ position:relative; }
+     .af-flow2 .af-panel{
+       position:relative;
+       width:100%;
+       border-radius:var(--radius-lg);
+       background:var(--af-panel-bg);
+       /* The system runs zero box-shadow: depth is an inset hairline ring.
+          This carried a 40px drop shadow and a border; the ring replaces
+          both and costs no layout width. */
+       box-shadow:inset 0 0 0 1px var(--af-panel-border);
+       padding:28px var(--af-pad-x) 28px;
+     }
+     .af-flow2 .af-radio{
+       position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0;
+       border:none; outline:none; opacity:0; pointer-events:none;
+       -webkit-appearance:none; appearance:none;
+     }
+     .af-flow2 .af-toggle{
+       /* In the flow above the drawing rather than floating over its top
+          corner. margin-left:auto is what ranges it right, so it still
+          hangs off the same line as the bullets card below — which is set
+          by the panel's own padding — at every width. */
+       width:max-content; max-width:100%;
+       margin:0 0 16px auto;
+       display:flex;
+       flex-wrap:wrap;
+       justify-content:flex-end;
+       gap:2px;
+       background:var(--surface);
+       box-shadow:inset 0 0 0 1px var(--hairline);
+       border-radius:calc(var(--af-cta-radius) + 2px);
+       padding:2px;
+       z-index:2;
+     }
+     .af-flow2 .af-toggle-opt{
+       font-family:var(--af-font);
+       /* Sentence case, and smaller with it. The tracking goes too: it is
+          there to open up capitals and only makes lower case look loose. */
+       font-size:11px;
+       font-weight:var(--weight-heading);
+       letter-spacing:normal;
+       text-transform:none;
+       color:var(--af-ink-soft);
+       /* The type stays on the scale at 12px; the box around it comes in.
+          This was 0.85/1.1em, which made the control 43px tall and nearly
+          a third of the panel wide for two words. */
+       padding:0.45em 0.7em;
+       border-radius:var(--af-cta-radius);
+       cursor:pointer;
+       white-space:nowrap;
+       user-select:none;
+       transition:background 0.15s ease, color 0.15s ease,
+                  transform var(--dur-fast,150ms) var(--af-cta-ease),
+                  opacity var(--dur-fast,150ms) var(--af-cta-ease);
+     }
+     .af-flow2 .af-toggle-opt:hover{ color:var(--af-ink); }
+     /* Selected option matches the site's own CTA button treatment exactly. */
+     #af-tab-direct:checked ~ .af-panel .af-toggle .af-opt-direct,
+     #af-tab-kb:checked ~ .af-panel .af-toggle .af-opt-kb{
+       background:var(--af-cta-bg);
+       color:var(--af-cta-ink);
+     }
+     #af-tab-direct:checked ~ .af-panel .af-toggle .af-opt-direct:hover,
+     #af-tab-kb:checked ~ .af-panel .af-toggle .af-opt-kb:hover{
+       color:var(--af-cta-ink);
+       transform:translateY(-1px);
+       opacity:0.9;
+     }
+     .af-flow2 .af-view{ display:none; }
+     #af-tab-direct:checked ~ .af-panel .af-view-direct{ display:block; }
+     #af-tab-kb:checked ~ .af-panel .af-view-kb{ display:block; }
+
+     .af-flow2 .af-diagram-col svg{ display:block; width:100%; height:auto; }
+     .af-flow2 .af-bullet-icon{ display:block; width:12px; height:12px; }
+
+     /* ---- two-column layout: diagram (3/4) + bullets card (1/4) ---- */
+     .af-flow2 .af-row{
+       display:flex;
+       align-items:stretch;
+       gap:24px;
+     }
+     .af-flow2 .af-diagram-col{
+       flex:3 1 0;
+       min-width:0;
+     }
+     /* Invisible, full-height positioning box — lets the visible card inside
+        stay content-sized while still being pinned to a precise vertical
+        point (the AI-assistant box's own center) rather than merely centered
+        in the row. */
+     .af-flow2 .af-bullets-anchor{
+       flex:1 1 0;
+       min-width:0;
+       position:relative;
+     }
+     .af-flow2 .af-bullets-col{
+       position:absolute;
+       left:0; right:0;
+       transform:translateY(-50%);
+       display:flex;
+       flex-direction:column;
+       justify-content:center;
+       background:var(--surface);
+       border-radius:var(--radius-md);
+       padding:16px 18px;
+       box-shadow:inset 0 0 0 1px var(--hairline);
+     }
+     .af-flow2 .af-bullets-title{
+       font-family:var(--af-font);
+       /* The system's eyebrow otherwise, but bold rather than the single
+          heading weight. That is a deliberate exception, and it needed the
+          face to exist: only 400 and 500 were being fetched, so a 700 here
+          would have been the browser smearing 500 rather than Geist Bold. */
+       font-size:var(--fs-tiny);
+       font-weight:700;
+       letter-spacing:var(--tracking-eyebrow);
+       text-transform:uppercase;
+       color:var(--af-ink);
+       margin:0 0 12px;
+     }
+     .af-flow2 .af-bullets{
+       list-style:none;
+       margin:0;
+       padding:0;
+       display:flex;
+       flex-direction:column;
+       gap:10px;
+     }
+     .af-flow2 .af-bullets li{
+       display:flex;
+       align-items:flex-start;
+       gap:7px;
+       font-family:var(--af-font);
+       /* 12px, the bottom of the system's scale. It was 10.5, which is off
+          it and below anything else the site sets. */
+       font-size:var(--fs-tiny);
+       line-height:var(--lh-body);
+       color:var(--af-ink-soft);
+       /* Padding out, margin back in: the row gets something to highlight
+          without moving from where it sat. */
+       padding:6px 8px;
+       margin:-6px -8px;
+       border-radius:var(--radius-sm);
+       transition:background-color var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease),
+                  color var(--dur) var(--ease);
+     }
+     /* The same highlight the two layer cards above use: the flat grey,
+        and nothing drawn around it. */
+     .af-flow2 .af-bullets li:hover{
+       background:var(--wash-grey-base);
+       color:var(--ink);
+     }
+     /* A pointer is not the only way in. The rows are static text, so this
+        is for the keyboard and for touch, where :hover is unreliable. */
+     .af-flow2 .af-bullets li:focus-within{
+       background:var(--wash-grey-base);
+       color:var(--ink);
+     }
+     .af-flow2 .af-bullet-icon{ flex:none; margin-top:1.5px; }
+     .af-flow2 .af-bullet-icon-con{ color:var(--af-muted); }
+     .af-flow2 .af-bullet-icon-pro{ color:var(--af-ink); }
+     .af-flow2 .af-bullets li span{ padding-top:0.5px; }
+
+     /* The card is pinned to the AI-assistant box's centre, which works only
+        while the drawing is the taller of the two. Below this the card wins
+        and the pin pushes its top above the row — far enough at 960px to
+        touch the toggle sitting over it. It goes back into the flow here and
+        hangs from the top of the column, which keeps the row's own gap under
+        the control. */
+     @media (max-width:1100px){
+       .af-flow2 .af-bullets-anchor{ position:static; }
+       .af-flow2 .af-bullets-col{ position:static; transform:none; }
+     }
+     @media (max-width:760px){
+       .af-flow2 .af-row{ flex-direction:column; align-items:stretch; }
+       .af-flow2 .af-bullets-col{ margin-top:4px; }
+     }
+
+     /* ---- shared node / chip styling ---- */
+     .af-flow2 .af-chip-rect{ fill:var(--af-card-bg); stroke:var(--af-card-border); stroke-width:1.2; }
+     .af-flow2 .af-chip-label{
+       font-family:var(--af-font);
+       font-size:13.5px; font-weight:var(--weight-heading); fill:var(--af-ink);
+     }
+     .af-flow2 .af-chip-muted{ opacity:0.42; }
+     .af-flow2 .af-chip-muted .af-chip-rect{ stroke-dasharray:3 4; }
+     .af-flow2 .af-logo-tile{ fill:var(--surface); stroke:var(--af-card-border); stroke-width:1.2; }
+     .af-flow2 .af-mono{
+       font-family:var(--af-font);
+       font-weight:var(--weight-heading); fill:var(--surface);
+     }
+     .af-flow2 .af-section-label{
+       font-family:var(--af-font);
+       font-size:11.5px; font-weight:var(--weight-heading); letter-spacing:var(--tracking-eyebrow); text-transform:uppercase;
+       fill:var(--af-muted);
+     }
+     /* These two were solid black at 1.4, which is the heaviest line on the page and
+reads as a border in a system that does not draw them - hairline now, like
+every other box. The assistant box stays white with it: it is the surface
+the whole diagram resolves to, so it reads as the destination by being the
+plainest thing in the drawing rather than the most filled. */
+     .af-flow2 .af-ast-rect{ fill:var(--surface); stroke:var(--hairline); stroke-width:1; }
+     .af-flow2 .af-ast-title{
+       font-family:var(--af-font);
+       font-size:15px; font-weight:var(--weight-heading); fill:var(--af-ink);
+     }
+     .af-flow2 .af-ast-label{
+       font-family:var(--af-font);
+       font-size:11px; font-weight:var(--weight-heading); fill:var(--af-ink-soft);
+     }
+     .af-flow2 .af-ast-sub{
+       font-family:var(--af-font);
+       font-size:12px; fill:var(--af-muted);
+     }
+
+     /* ---- direct view ---- */
+     .af-flow2 .af-line-base{ fill:none; stroke:var(--ink); stroke-opacity:0.10; stroke-width:1.3; }
+     .af-flow2 .af-line-glow{ fill:none; stroke:var(--ink); stroke-width:1.6; opacity:0; }
+     .af-flow2 .af-line-muted{ fill:none; stroke:var(--hairline); stroke-width:1.3; stroke-dasharray:1 6; stroke-linecap:round; }
+     .af-flow2 .af-chip-pulse{ fill:none; stroke:var(--af-ink); stroke-width:1.6; opacity:0; }
+     .af-flow2 .af-packet, .af-flow2 .af-packet-ping{ opacity:0; }
+     .af-flow2 .af-packet-core{ fill:var(--ink); }
+     .af-flow2 .af-packet-glow{ fill:var(--ink); opacity:0.55; filter:url(#af-blur); }
+     .af-flow2 .af-ping-ring{ fill:none; stroke:var(--ink); stroke-width:1.4; }
+
+     /* ---- knowledge-layer view ---- */
+     /* White like the assistant box. It had kept the chip fill to read as a
+        layer rather than an endpoint, but that left it the only grey box in
+        either view, and a filled box is not how this system separates
+        things — surfaces are white and the hairline does the work. */
+     .af-flow2 .af-kb-rect{ fill:var(--surface); stroke:var(--hairline); stroke-width:1; }
+     .af-flow2 .af-kb-title{
+       font-family:var(--af-font);
+       font-size:15px; font-weight:var(--weight-heading); fill:var(--af-ink);
+     }
+     /* The stacked bars in the knowledge node, which carried their black stroke as
+        an inline attribute rather than through a class. */
+     .af-flow2 .af-stack-rect{ stroke:var(--hairline); stroke-width:1; }
+     .af-flow2 .af-kb-sub{
+       font-family:var(--af-font);
+       font-size:11.5px; fill:var(--af-muted);
+     }
+     /* The channel out of the knowledge base, made to flow the way the feeds
+        into it do. Everything that moved on this segment before was SMIL —
+        the pill, the ping, the glow — and all three sit at opacity 0 until
+        that clock runs, so wherever it does not this half of the diagram is
+        not merely still, it is blank. Same keyframe and same dash as the
+        ingestion lines, so both halves move alike and neither depends on
+        SMIL. The solid rail stays underneath: many dotted feeds in, one
+        channel out, a current inside it. */
+     .af-flow2 .af-line-flow{
+       fill:none; stroke:var(--ink); stroke-opacity:0.55; stroke-width:1.5;
+       stroke-linecap:round; stroke-dasharray:1 7;
+       animation:af2-dash 0.9s linear infinite;
+     }
+     .af-flow2 .af-line-kb{
+       fill:none; stroke:var(--ink); stroke-opacity:0.4; stroke-width:1.5;
+       stroke-linecap:round; stroke-dasharray:1 7;
+       animation:af2-dash 0.9s linear infinite;
+     }
+     @keyframes af2-dash{ to{ stroke-dashoffset:-16; } }
+     .af-flow2 .af-pill{ opacity:0; }
+     .af-flow2 .af-pill-core{ fill:var(--ink); }
+     .af-flow2 .af-pill-glow{ fill:var(--ink); opacity:0.5; filter:url(#af-blur-kb); }
+
+     @media (max-width:640px){
+       /* Narrower gutter on a phone. Set through the token so the toggle
+          follows it. */
+       .af-flow2{ --af-pad-x:16px; }
+       .af-flow2 .af-panel{ padding-top:20px; padding-bottom:22px; }
+       .af-flow2 .af-toggle{ margin-bottom:12px; }
+       /* The toggle's own size is no longer restated here: this block was
+          putting the padding and the font back up to 7px/11.5 on exactly
+          the screens where the control is tightest. */
+       .af-flow2 .af-chip-label, .af-flow2 .af-ast-label{ font-size:11.5px; }
+     }
+
+     @media (prefers-reduced-motion:reduce){
+       .af-flow2 .af-line-glow, .af-flow2 .af-chip-pulse{ display:none; }
+       .af-flow2 .af-packet-core, .af-flow2 .af-packet-glow, .af-flow2 .af-ping-ring{ display:none; }
+       .af-flow2 .af-line-kb{ animation:none; stroke-dasharray:none; stroke-opacity:0.3; }
+       .af-flow2 .af-line-flow{ animation:none; stroke-dasharray:none; stroke-opacity:0.3; }
+       .af-flow2 .af-pill-core, .af-flow2 .af-pill-glow{ display:none; }
+       .af-flow2 g[data-anim] > animateMotion,
+       .af-flow2 g[data-anim] > animate,
+       .af-flow2 path > animate,
+       .af-flow2 circle > animate{ display:none; }
+     }
