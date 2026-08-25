@@ -2283,33 +2283,49 @@ plainest thing in the drawing rather than the most filled. */
   /* The measure the folds on the other two pages were fitted to. */
   max-width: 54.6ch;
 }
-.sec-plain .trust-stage { margin-top: var(--space-12); }
+.sec-plain .trust-stage {
+  /* Named, so the identity can restate them below rather than the gradient
+     being written twice. The corners are the two ends of the accent's own
+     family: the deepest is a step off #0000FF itself, the coolest leans
+     towards sky, and the light pools between them. */
+  --stage-deep: #0b17e8;
+  --stage-cool: #4f9bfa;
+  --stage-bloom: rgba(178, 200, 255, 0.5);
+  --stage-a: #1b2bf0;
+  --stage-b: #4f6bf7;
+  --stage-c: #6f97fb;
+  --stage-base: #4a63f5;
 
-/* The stage: the five marks held on a tray, over a lit gradient.
-
-   Proportions measured off the reference image (1120x520): the panel at 2.15,
-   the tray 57% of its width and 27% of its height, tiles at 10% of the width
-   with 15 between them. Painted rather than placed as a picture, so it stays
-   sharp at any width and reflows on a phone instead of scaling down.
-
-   The one thing this costs: white marks on colour cannot also carry the
-   identity accent, so unlike the rest of the site this block does not change
-   with the wordmark. */
-.trust-stage {
   margin-top: var(--section-md);
   border-radius: var(--radius-md);
   padding: clamp(3rem, 15.2vw, 12.2rem) var(--space-4);
   display: grid;
   place-items: center;
-  background-color: #7c85ee;
-  /* Four layers, not one sweep: the corners are the deepest violet and the
-     coolest blue, and the light pools between them rather than running in a
-     straight line, which is what a single linear-gradient cannot do. */
+  background-color: var(--stage-base);
+  /* Four layers, not one sweep: the corners hold the two ends of the range and
+     the light pools between them rather than running in a straight line, which
+     is what a single linear-gradient cannot do. */
   background-image:
-    radial-gradient(115% 135% at 0% 0%, #6a44e8, rgba(106, 68, 232, 0) 58%),
-    radial-gradient(95% 125% at 100% 78%, #7fa4f8, rgba(127, 164, 248, 0) 62%),
-    radial-gradient(70% 95% at 46% 38%, rgba(184, 192, 255, 0.5), rgba(184, 192, 255, 0) 62%),
-    linear-gradient(135deg, #6d4ae8 0%, #8b93ee 46%, #8fa8f6 100%);
+    radial-gradient(115% 135% at 0% 0%, var(--stage-deep), rgba(11, 23, 232, 0) 58%),
+    radial-gradient(95% 125% at 100% 78%, var(--stage-cool), rgba(79, 155, 250, 0) 62%),
+    radial-gradient(70% 95% at 46% 38%, var(--stage-bloom), rgba(178, 200, 255, 0) 62%),
+    linear-gradient(135deg, var(--stage-a) 0%, var(--stage-b) 46%, var(--stage-c) 100%);
+}
+/* The other identity's accent is a teal, and a blue panel under teal type is
+   the same mismatch the other way round. Same construction, its own family. */
+.page[data-identity="vongraph"] .trust-stage {
+  --stage-deep: #0d4a4d;
+  --stage-cool: #56bcc1;
+  --stage-bloom: rgba(196, 238, 239, 0.45);
+  --stage-a: #14686c;
+  --stage-b: #3d9a9e;
+  --stage-c: #67bcbf;
+  --stage-base: #35898d;
+  background-image:
+    radial-gradient(115% 135% at 0% 0%, var(--stage-deep), rgba(13, 74, 77, 0) 58%),
+    radial-gradient(95% 125% at 100% 78%, var(--stage-cool), rgba(86, 188, 193, 0) 62%),
+    radial-gradient(70% 95% at 46% 38%, var(--stage-bloom), rgba(196, 238, 239, 0) 62%),
+    linear-gradient(135deg, var(--stage-a) 0%, var(--stage-b) 46%, var(--stage-c) 100%);
 }
 .trust-tray {
   display: flex;
