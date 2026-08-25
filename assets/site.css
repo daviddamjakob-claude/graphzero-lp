@@ -2253,158 +2253,59 @@ plainest thing in the drawing rather than the most filled. */
        .af-flow2 circle > animate{ display:none; }
      }
 
-/* --------------------------------------------------------------------------
-   Trust grid — the five guarantees, on the Security page.
+/* The stage: the five marks held on a tray, over a lit gradient.
 
-   The reference divides its cells with hairlines and nothing else: no card
-   boxes, no radius, no fill. That is why five long descriptions can sit in a
-   row without becoming five boxes, and it is the same move .cap and .showcase
-   already make on the other pages, so it needs no new vocabulary here — only
-   a grid whose cells draw their own edges.
+   Proportions measured off the reference image (1120x520): the panel at 2.15,
+   the tray 57% of its width and 27% of its height, tiles at 10% of the width
+   with 15 between them. Painted rather than placed as a picture, so it stays
+   sharp at any width and reflows on a phone instead of scaling down.
 
-   Five is an awkward number for a grid. Rather than leave a hole, the row
-   count is left to the width: three then two on a wide screen, two then two
-   then one at tablet, one column on a phone. The dividers are drawn per cell
-   from the top and left, so whatever the wrap produces, the seams land in the
-   right places.
-   -------------------------------------------------------------------------- */
-/* --------------------------------------------------------------------------
-   Plain header — the Security page.
-
-   The reference's shape, this site's type. What is kept from it is the
-   arrangement: no hero panel and no mark, the copy on the flat page, and the
-   graphic directly beneath rather than beside. What is not kept is its type —
-   the heading is .h2, the step section 01 runs at on the Platform page, at the
-   system's one heading weight, and the lead is the ordinary one.
-   -------------------------------------------------------------------------- */
-.sec-plain { padding-top: clamp(3.5rem, 12.5vw, 10rem); }
-/* The break is the only thing shaping the heading; no measure cap, so a cap
-   cannot fight it. */
-.plain-title { max-width: none; }
-.plain-lead {
-  margin-top: var(--space-6);
-  /* The measure the folds on the other two pages were fitted to. */
-  max-width: 54.6ch;
-}
-.sec-plain .trust-stage { margin-top: var(--space-12); }
-
-/* The stage: a wide panel with the five marks held on a tray at its centre.
-
-   The reference does this as a single 1040x550 image on a purple gradient, so
-   there is no markup to follow — this is the same idea rebuilt in CSS, which
-   also means the marks can take the accent and follow the identity rather than
-   being baked into a picture. Grey rather than purple, as asked, so the tiles
-   are white-on-grey where the reference's are translucent-on-colour.
-
-   Proportions measured off the reference at 916px wide: tiles 118 square, 15
-   between them, the tray 10-16 of padding around, and roughly 200 of panel
-   above and below it. */
+   The one thing this costs: white marks on colour cannot also carry the
+   identity accent, so unlike the rest of the site this block does not change
+   with the wordmark. */
 .trust-stage {
   margin-top: var(--section-md);
   border-radius: var(--radius-md);
-  /* The reference's panel is 1040x550 with a 150-tall tray at its centre, so
-     roughly 200 above and below — 19% of its own width. That height is most
-     of why it reads as a graphic rather than a widget, so it is matched here
-     rather than trimmed. */
-  padding: clamp(3.5rem, 18vw, 14.75rem) var(--space-4);
+  padding: clamp(3rem, 15.2vw, 12.2rem) var(--space-4);
   display: grid;
   place-items: center;
-  background-color: var(--wash-grey-base);
-  /* Not a flat fill: the reference's panel has light moving across it, and the
-     site already has a vocabulary for that in --ground-wash. */
+  background-color: #7c85ee;
+  /* Four layers, not one sweep: the corners are the deepest violet and the
+     coolest blue, and the light pools between them rather than running in a
+     straight line, which is what a single linear-gradient cannot do. */
   background-image:
-    radial-gradient(80% 120% at 78% 8%, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0) 60%),
-    radial-gradient(70% 110% at 12% 96%, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0) 58%);
+    radial-gradient(115% 135% at 0% 0%, #6a44e8, rgba(106, 68, 232, 0) 58%),
+    radial-gradient(95% 125% at 100% 78%, #7fa4f8, rgba(127, 164, 248, 0) 62%),
+    radial-gradient(70% 95% at 46% 38%, rgba(184, 192, 255, 0.5), rgba(184, 192, 255, 0) 62%),
+    linear-gradient(135deg, #6d4ae8 0%, #8b93ee 46%, #8fa8f6 100%);
 }
 .trust-tray {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.9375rem;
-  padding: 0.75rem;
-  border-radius: calc(var(--radius-lg) + 0.5rem);
-  /* Translucent, so the panel's wash carries through it the way the
-     reference's tray carries its gradient. */
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 0 0 1px var(--hairline);
+  padding: 0.875rem;
+  border-radius: 1.75rem;
+  /* Glass, not a card: the panel's light has to carry through both the tray
+     and the tiles, so both are white at low alpha rather than a fill. */
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.26);
 }
 .trust-tile {
-  width: clamp(4rem, 9.5vw, 7.375rem);
+  width: clamp(3.75rem, 8.75vw, 7rem);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--hairline);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 .trust-tile svg {
   display: block;
-  /* 38% of the tile, which is where the reference sets its own marks. */
   width: 38%;
   height: auto;
-  color: var(--hl, var(--heading));
+  color: #ffffff;
 }
-
-.trust {
-  background: var(--ground-base);
-  border-radius: var(--radius-lg);
-  margin-top: var(--section-md);
-  padding: var(--space-2);
-}
-.trust-grid {
-  display: grid;
-  /* Stated per breakpoint rather than left to auto-fit. auto-fit resolves the
-     count from the available width, which at 1280 gave four columns and put a
-     divider above a cell that was already on the top row — the seams have to
-     be predictable for the rules below to land in the right places. */
-  grid-template-columns: 1fr;
-}
-@media (min-width: 640px)  { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
-
-.trust-cell {
-  display: grid;
-  align-content: start;
-  gap: var(--space-4);
-  padding: var(--space-8);
-  /* Drawn on the cell, not between them: a gap plus a rule cannot know where
-     the row breaks. Every cell draws its top and left edge, and the rules
-     below take back the ones that would fall on the panel's outer edge. */
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-}
-/* One column: no vertical seams at all, and only the first cell is on a top row. */
-.trust-cell { border-left: 0; }
-.trust-cell:first-child { border-top: 0; }
-
-@media (min-width: 640px) {
-  .trust-cell:nth-child(-n + 2) { border-top: 0; }
-  .trust-cell { border-left: 1px solid var(--line); }
-  .trust-cell:nth-child(2n + 1) { border-left: 0; }
-}
-@media (min-width: 1000px) {
-  .trust-cell:nth-child(-n + 3) { border-top: 0; }
-  .trust-cell:nth-child(n + 4) { border-top: 1px solid var(--line); }
-  .trust-cell { border-left: 1px solid var(--line); }
-  .trust-cell:nth-child(2n + 1) { border-left: 1px solid var(--line); }
-  .trust-cell:nth-child(3n + 1) { border-left: 0; }
-}
-
-.trust-icon {
-  display: block;
-  width: clamp(3.25rem, 5vw, 4.5rem);
-  height: auto;
-  color: var(--hl, var(--heading));
-}
-.trust-cell__title {
-  font-size: var(--fs-lead);
-  line-height: var(--lh-h3);
-  letter-spacing: var(--tracking-h3);
-  font-weight: var(--weight-heading);
-  color: var(--heading);
-  text-wrap: pretty;
-}
-.trust-cell__body { max-width: 34ch; color: var(--body); }
 
 /* The dark band, used mid-page rather than as the run into the footer. It
    rounds all four corners and carries its own bottom margin, where .sec-dark
@@ -2418,6 +2319,12 @@ plainest thing in the drawing rather than the most filled. */
    .dark, so the rows take that instead. */
 .dark .layer-list li:hover,
 .dark .layer-list li:focus-within { background: var(--fill); }
+/* The card paints its own white surface, but .dark has already flipped the
+   ink to on-dark values — so on this ground it was white type on a white card,
+   with nothing readable in either column. On black the band itself is the
+   surface and the hairline does the separating, which is what the rest of the
+   system does here. */
+.dark .layer-card { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
 /* Measured at 2.44:1 against the black — the accent is a light-ground colour
    and cannot carry an emphasis here. On this ground the emphasis is simply
    full-strength ink, which is what .dark does with every other accent. */
