@@ -2467,10 +2467,13 @@ plainest thing in the drawing rather than the most filled. */
    -------------------------------------------------------------------------- */
 .af-head { margin-bottom: var(--space-8); }
 .rotator {
-  display: grid;
-  /* Its own line: the names differ in width by a factor of three, and inline
-     they would drag the rest of the heading back and forth. */
+  /* Inline, on the same line as the words that introduce it. The names differ
+     in width by a factor of three, but they are stacked in one cell rather than
+     laid out in sequence, so the box is always as wide as the longest of them
+     and the heading does not move as they change. */
+  display: inline-grid;
   justify-items: start;
+  vertical-align: baseline;
 }
 .rotator__item {
   grid-area: 1 / 1;
@@ -2527,7 +2530,7 @@ plainest thing in the drawing rather than the most filled. */
    the page's full section rhythm. It does need room: what sits between them now
    is a section heading at full size, and at zero it was touching the table above
    it. --section-md is the middle setting the page already uses. */
-.page[data-page="security"] #architecture { padding-top: var(--section-md); }
+.page[data-page="security"] #architecture { padding-top: var(--section-lg); }
 
 /* --------------------------------------------------------------------------
    Runtime / inference / compliance — the Security band's options as plain
