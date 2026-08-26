@@ -17,8 +17,8 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=131">
-<link rel="icon" href="assets/graphzero-mark.svg?v=131" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=132">
+<link rel="icon" href="assets/graphzero-mark.svg?v=132" type="image/svg+xml">
 </head>
 <body data-surface="light">
 
@@ -368,46 +368,70 @@
       <div class="wrap">
       <span class="eyebrow">04 — Security</span>
       <hr class="rule">
-      <h2 class="h2 sec-head">Security and Compliance, built in.</h2>
-      <p class="lead sec-head__lead sec-head__lead--full">Ascending was founded on the conviction that European companies and governments are becoming dependent on US AI infrastructure at exactly the moment AI becomes the core of how organisations work. Hence security and compliance to the highest European standards is non-negotiable in every piece of our technology.</p>
+      <h2 class="h2 sec-head">Secure by design, sovereign by default.</h2>
 
-      <!-- Compliance -->
-      <div class="stack-16" style="padding-top:var(--space-12)">
-        <span class="eyebrow eyebrow--accent">Compliance</span>
-        <div class="grid-3">
-          <article class="card card--ring" style="gap:var(--space-3)">
-            <h3 class="h4-card">GDPR compliant</h3>
-            <p class="small">Customer data is processed in the EU and handled in line with GDPR.</p>
-          </article>
-          <article class="card card--ring" style="gap:var(--space-3)">
-            <h3 class="h4-card">EU AI Act-ready</h3>
-            <p class="small">Transparent AI interaction. No emotion recognition, no ranking of people, no individual-level analytics.</p>
-          </article>
-          <article class="card card--ring" style="gap:var(--space-3)">
-            <h3 class="h4-card">ISO 27001 <span class="note-line">(in progress)</span></h3>
-            <p class="small">Certification underway; our security management system follows the standard today.</p>
-          </article>
+      <!-- Runtime and inference sit side by side with a rule between them,
+           because they are independent choices: nothing in the left column
+           constrains the right one. Each option carries its own note, so there
+           is no composed sentence to read and no selection to make — every
+           combination is legible at once.
+
+           Compliance runs full width underneath. It is not a third choice; it
+           is what holds true whichever pair you land on. -->
+      <div class="picker split split--even" style="padding-top:var(--space-12)">
+        <div class="picker__group">
+          <span class="eyebrow eyebrow--accent">Runtime</span>
+          <ul class="opt-list">
+            <li>
+              <span class="opt__name">Our EU cloud</span>
+              <span class="opt__note">A dedicated single-tenant environment on EU infrastructure, operated by us.</span>
+            </li>
+            <li>
+              <span class="opt__name">Your cloud account</span>
+              <span class="opt__note">Runs in your own cloud account, in your region, under your controls.</span>
+            </li>
+            <li>
+              <span class="opt__name">Your data centre</span>
+              <span class="opt__note">On request: <span data-identity-name>graphzero</span> runs inside your own data centre, on hardware you control.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="picker__group picker__group--right">
+          <span class="eyebrow eyebrow--accent">Inference</span>
+          <ul class="opt-list">
+            <li>
+              <span class="opt__name">EU-hosted models</span>
+              <span class="opt__note">EU-hosted models process your content, inside the EU.</span>
+            </li>
+            <li>
+              <span class="opt__name">Self-hosted models</span>
+              <span class="opt__note">Open-weight models running beside the index, in whichever runtime you choose.</span>
+            </li>
+            <li>
+              <span class="opt__name">Your own keys</span>
+              <span class="opt__note">Inference runs on your existing model agreements, so AI spend stays on your contract, at your negotiated terms.</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <!-- Deployment -->
       <div class="stack-16" style="padding-top:var(--section-md)">
-        <span class="eyebrow eyebrow--accent">Deployment</span>
-        <div class="grid-3">
-          <article class="card card--ring" style="gap:var(--space-3)">
-            <h3 class="h4-card">Dedicated single-tenant cloud</h3>
-            <p class="small">Your own isolated environment on EU infrastructure.</p>
-          </article>
-          <article class="card card--ring" style="gap:var(--space-3)">
-            <h3 class="h4-card">Bring your own cloud</h3>
-            <p class="small">Runs in your cloud account, in your region, under your controls.</p>
-          </article>
-          <article class="card card--ring card--muted" style="gap:var(--space-3)">
-            <span class="eyebrow">Undecided</span>
-            <h3 class="h4-card">On-premise</h3>
-            <p class="small">On request — the brief marks this third card as conditional.</p>
-          </article>
-        </div>
+        <span class="eyebrow eyebrow--accent">Compliance</span>
+        <ul class="opt-list opt-list--wide">
+          <li>
+            <span class="opt__name">GDPR compliant</span>
+            <span class="opt__note">Customer data is processed in the EU and handled in line with GDPR.</span>
+          </li>
+          <li>
+            <span class="opt__name">EU AI Act-ready</span>
+            <span class="opt__note">Transparent AI interaction. No emotion recognition, no ranking of people, no individual-level analytics.</span>
+          </li>
+          <li>
+            <span class="opt__name">ISO 27001 <span class="note-line">(in progress)</span></span>
+            <span class="opt__note">Certification underway; our security management system follows the standard today.</span>
+          </li>
+        </ul>
       </div>
       </div>
     </section>
@@ -428,6 +452,6 @@
 
 </div>
 
-<script src="assets/site.js?v=131" defer></script>
+<script src="assets/site.js?v=132" defer></script>
 </body>
 </html>
