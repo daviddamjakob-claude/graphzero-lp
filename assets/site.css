@@ -141,9 +141,10 @@
    -------------------------------------------------------------------------- */
 .page[data-identity="vongraph"] { --hl: #4d9a9e; }
 
-/* Comparison control, like the hero mark's arrows. Quiet at rest: no fill
-   until the pointer is on one, so the pair does not read as chrome flanking
-   the wordmark. */
+/* Comparison control, like the hero mark's arrows. One arrow, not a pair: with
+   two identities it reaches both, and a second would only be another way to do
+   the same thing while reading as chrome flanking the wordmark. Quiet at rest —
+   no fill until the pointer is on it. */
 .brand-switch { display: inline-flex; align-items: center; gap: var(--space-2); }
 .brand-switch__arrow {
   width: 1.5rem; height: 1.5rem;
