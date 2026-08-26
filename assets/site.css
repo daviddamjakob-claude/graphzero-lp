@@ -2583,6 +2583,10 @@ plainest thing in the drawing rather than the most filled. */
 .mark-item {
   display: grid;
   justify-items: start;
+  align-content: start;   /* the three items are stretched to a common height by
+                             the list; without this each one spreads that spare
+                             height across its own rows, and the names land on
+                             three different baselines */
   gap: var(--space-3);
 }
 .mark {
@@ -2606,3 +2610,50 @@ plainest thing in the drawing rather than the most filled. */
 @media (min-width: 760px) {
   .mark-list { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+
+/* --------------------------------------------------------------------------
+   Challenges by area — tabs over one set of cards.
+
+   The strip put all four challenges up at once and asked the reader to hover
+   to find out what any of them said. These are two sets, and the tabs are the
+   split: one area on screen at a time, every card readable without touching
+   anything. The card carries no tag, because the open tab already says what it
+   is filed under.
+   -------------------------------------------------------------------------- */
+.areas { display: grid; gap: var(--space-8); }
+
+/* Row gap much tighter than the column gap: the long tab wraps to two lines on
+   a narrow screen, and at an even --space-8 the second tab fell 71px away and
+   stopped reading as part of the same row. */
+.tabs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-8); }
+.tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0 0 var(--space-3);
+  font: inherit;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-body);
+  color: var(--meta);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.tab:hover { color: var(--body); }
+/* The rule under the open tab is the only mark of state — it is the same
+   hairline the sections use, at the weight that reads as underline rather than
+   as a border that happens to be there. */
+.tab[aria-selected="true"] { color: var(--heading); border-bottom-color: var(--heading); }
+
+/* auto-fit rather than a fixed count: one area has two cards and the other
+   three, and collapsed empty tracks let each set fill the row on its own. */
+.areas__cards {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  align-items: stretch;
+}
+.area-card { display: none; }
+.areas__cards[data-area="strategy"] .area-card[data-area="strategy"],
+.areas__cards[data-area="technology"] .area-card[data-area="technology"] { display: grid; }

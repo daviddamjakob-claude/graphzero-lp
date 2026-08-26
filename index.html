@@ -17,8 +17,8 @@
      because nothing here edits it. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=133">
-<link rel="icon" href="assets/graphzero-mark.svg?v=133" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=134">
+<link rel="icon" href="assets/graphzero-mark.svg?v=134" type="image/svg+xml">
 </head>
 <body data-surface="light">
 
@@ -218,36 +218,45 @@
         </div>
       </div>
 
-      <div class="strip" style="margin-top:var(--space-12)">
-        <button class="strip__panel" type="button">
-          <span class="chip-row strip__tags">
-            <span class="chip-outline">Strategy &amp; Change Management</span>
-          </span>
-          <span class="strip__title">Self-usage without focus, little governance and unclear ROI</span>
-          <span class="strip__body">Lorem ipsum est.</span>
-        </button>
-        <button class="strip__panel" type="button">
-          <span class="chip-row strip__tags">
-            <span class="chip-outline">Knowledge Base</span>
-          </span>
-          <span class="strip__title">Enterprise data in siloed systems</span>
-          <span class="strip__body">Lorem ipsum est.</span>
-        </button>
-        <button class="strip__panel" type="button">
-          <span class="chip-row strip__tags">
-            <span class="chip-outline">Knowledge Base</span>
-          </span>
-          <span class="strip__title">Inaccurate and unreliable results</span>
-          <span class="strip__body">Lorem ipsum est.</span>
-        </button>
-        <button class="strip__panel" type="button">
-          <span class="chip-row strip__tags">
-            <span class="chip-outline">Knowledge Base</span>
-            <span class="chip-outline">LLM</span>
-          </span>
-          <span class="strip__title">Loss of control and exposure of sensitive data</span>
-          <span class="strip__body">Lorem ipsum est.</span>
-        </button>
+      <!-- The challenges split into the two areas they actually belong to, and
+           the tabs are the split: one area on screen at a time, so the reader
+           is looking at a set rather than at four things at once. The card
+           carries no tag — the open tab already says what it is filed under.
+
+           data-area on the track is the only state; the stylesheet decides from
+           it which cards show, so nothing is written onto the cards themselves. -->
+      <div class="areas" style="margin-top:var(--space-12)">
+        <div class="tabs" role="tablist" aria-label="Challenges by area">
+          <button class="tab" type="button" role="tab" id="tab-strategy"
+                  aria-selected="true" aria-controls="challenge-cards" data-area="strategy">Strategy &amp; Change Management</button>
+          <button class="tab" type="button" role="tab" id="tab-technology"
+                  aria-selected="false" aria-controls="challenge-cards" data-area="technology">Technology</button>
+        </div>
+
+        <div class="areas__cards" id="challenge-cards" data-area="strategy">
+          <article class="card card--ring area-card" data-area="strategy">
+            <h3 class="h4-card">Self-usage without focus, little governance and unclear ROI</h3>
+            <p class="small">Assistants arrive one licence at a time. Nobody owns the outcome, no one can say what it returned, and the business case never gets written.</p>
+          </article>
+          <article class="card card--ring area-card" data-area="strategy">
+            <h3 class="h4-card">Pilots that never reach production</h3>
+            <p class="small">A demo convinces the room, then stalls on the questions it was never asked: who maintains it, whose data it may see, and what happens when it is wrong.</p>
+          </article>
+
+          <article class="card card--ring area-card" data-area="technology">
+            <h3 class="h4-card">Enterprise data in siloed systems</h3>
+            <p class="small">The knowledge an answer needs is spread across systems that were never meant to be read together, so every tool starts by rebuilding the same integrations.</p>
+          </article>
+          <article class="card card--ring area-card" data-area="technology">
+            <h3 class="h4-card">Inaccurate and unreliable results</h3>
+            <p class="small">Retrieval over loose documents returns something plausible for any question. Without structure behind it, an answer cannot be checked, only believed.</p>
+          </article>
+          <article class="card card--ring area-card" data-area="technology">
+            <h3 class="h4-card">Loss of control and exposure of sensitive data</h3>
+            <p class="small">Content leaves for whichever model the tool ships with, under permissions the source system enforced and the assistant does not.</p>
+          </article>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -522,6 +531,6 @@
 
 </div>
 
-<script src="assets/site.js?v=133" defer></script>
+<script src="assets/site.js?v=134" defer></script>
 </body>
 </html>

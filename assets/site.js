@@ -751,3 +751,48 @@
 
   refresh();
 })();
+
+/* Challenges by area. The open area is recorded in one place — data-area on
+   the card track — and the stylesheet decides from that which cards show.
+   Nothing is written onto the cards themselves, so there is no state to clean
+   up and no way for the two to disagree.
+
+   Arrow keys move between the tabs, which is what a tablist is expected to do
+   and what a row of buttons does not give you for free. */
+(function () {
+  'use strict';
+
+  var tabs = document.querySelector('.areas .tabs');
+  var cards = document.getElementById('challenge-cards');
+  if (!tabs || !cards) return;
+
+  var buttons = [].slice.call(tabs.querySelectorAll('[data-area]'));
+
+  function show(area, focus) {
+    cards.setAttribute('data-area', area);
+    buttons.forEach(function (b) {
+      var open = b.getAttribute('data-area') === area;
+      b.setAttribute('aria-selected', open);
+      /* only the open tab is in the tab order; the arrows reach the others */
+      b.tabIndex = open ? 0 : -1;
+      if (open && focus) b.focus();
+    });
+  }
+
+  tabs.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-area]');
+    if (btn) show(btn.getAttribute('data-area'), false);
+  });
+
+  tabs.addEventListener('keydown', function (e) {
+    var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    var at = buttons.indexOf(document.activeElement);
+    if (at < 0) return;
+    var next = buttons[(at + step + buttons.length) % buttons.length];
+    show(next.getAttribute('data-area'), true);
+  });
+
+  show(cards.getAttribute('data-area') || 'strategy', false);
+})();
