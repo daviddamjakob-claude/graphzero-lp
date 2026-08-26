@@ -3156,3 +3156,35 @@ plainest thing in the drawing rather than the most filled. */
     font-size: clamp(1.75rem, 9.15vw, 4.5rem);
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   Platform D's ground.
+
+   The source page carried nine grounds behind a swatch; this one is settled on
+   black, so the tokens are declared against the page rather than against a
+   data-ground attribute and there is no state to switch. The fold re-declares
+   the contextual colours the way .dark does, so everything inside it inverts by
+   the same route rather than being recoloured part by part.
+   -------------------------------------------------------------------------- */
+.page[data-page="platform-d"] {
+  --ground-base: #f2f2f2;
+  --ground-wash: none;
+  --ground-size: auto;
+  --hero-base: #000000;
+  --hero-wash: none;
+  --hero-size: auto;
+}
+.page[data-page="platform-d"] .hero__inner {
+  color: var(--ink-invert);
+  --heading: var(--ink-invert);
+  --body: var(--ink-muted-invert);
+  --meta: rgba(255, 255, 255, 0.55);
+  --line: rgba(255, 255, 255, 0.22);
+}
+/* No --hl on this page: the source declares the blue on the grey grounds only,
+   so on black .hl falls back to inherit and the marked words and the mark take
+   the fold's own reversed ink. That is what the reference shows. */
+
+/* Shown on the cosmic ground alone in the source, which this page is not. */
+.showcase__art { display: none; }
