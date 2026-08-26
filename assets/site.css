@@ -2570,9 +2570,39 @@ plainest thing in the drawing rather than the most filled. */
   color: var(--body);
 }
 
-/* Compliance runs the full width rather than a column, so its notes are not
-   held to the same narrow measure the two columns need. */
-@media (min-width: 900px) {
-  .opt-list--wide { grid-template-columns: 1fr 1fr 1fr; gap: var(--space-8); }
-  .opt-list--wide .opt__note { max-width: none; }
+/* Compliance runs the full width rather than a column: three marks across,
+   each one drawn rather than named. A bullet was doing the same job as the two
+   lists above it, which left the reader nothing to recognise — a certification
+   is a thing you spot before you read it. */
+.mark-list {
+  display: grid;
+  gap: var(--space-8);
+  padding: 0;
+  list-style: none;
+}
+.mark-item {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+.mark {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--space-2);
+  color: var(--heading);
+}
+/* currentColor throughout the mark, so it takes the ink of whatever ground it
+   lands on. The reference's marks are opaque PNGs and need inverting on the
+   dark band; these do not. */
+.mark__word {
+  fill: currentColor;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-anchor: middle;
+}
+.mark__word--sm { font-size: 16px; }
+.mark-item .opt__note { max-width: 34ch; }
+@media (min-width: 760px) {
+  .mark-list { grid-template-columns: 1fr 1fr 1fr; }
 }
