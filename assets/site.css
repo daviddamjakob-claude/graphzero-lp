@@ -1692,8 +1692,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
    has neither, so it was stacking 48px on top of the section's 128px and
    opening a chasm between the fold and the first line under it. */
 #layers .sec-head { padding-top: 0; }
-#layers .sec-head,
-#capabilities .h2 {
+#layers .sec-head {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
   letter-spacing: var(--tracking-h3);
@@ -2513,9 +2512,11 @@ plainest thing in the drawing rather than the most filled. */
 }
 .figure-stage .hero__figure svg { display: block; width: 100%; height: auto; }
 
-/* The drawing answers the two tables directly above it, so the section space
-   between them read as a break in an argument that has not finished. */
-.page[data-page="security"] #architecture { padding-top: 0; }
+/* The drawing answers the two tables directly above it, so it does not open on
+   the page's full section rhythm. It does need room: what sits between them now
+   is a section heading at full size, and at zero it was touching the table above
+   it. --section-md is the middle setting the page already uses. */
+.page[data-page="security"] #architecture { padding-top: var(--section-md); }
 
 /* --------------------------------------------------------------------------
    Runtime / inference / compliance — the Security band's options as plain
@@ -2800,7 +2801,9 @@ plainest thing in the drawing rather than the most filled. */
 .cell__body { max-width: 38ch; font-size: var(--fs-small); line-height: 1.6; color: var(--body); }
 /* the tags sit on the cell's bottom edge and carry its one piece of colour -
    the accent, so it follows the identity rather than being a fixed blue */
-.cell__foot { margin-top: auto; padding-top: var(--space-10); }
+/* 2.5rem: the reference's --space-10, which this design system does not
+   declare — left as a var it was an invalid declaration and dropped. */
+.cell__foot { margin-top: auto; padding-top: 2.5rem; }
 .cell__foot .chip-outline { background: none; color: var(--hl); box-shadow: inset 0 0 0 1px var(--hl); }
 
 /* One area on screen at a time. The open tab is recorded on the track and the
@@ -3030,3 +3033,78 @@ plainest thing in the drawing rather than the most filled. */
    Platform page. Inside a card the row below is placed by the grid, so that gap
    is measured twice. */
 .card-badge.mark { margin-bottom: 0; }
+
+
+/* --------------------------------------------------------------------------
+   Knowledge Base B — the diagram's heading, toggle and outcome cards.
+
+   All of it scoped to --split, which only this page carries: the same diagram
+   runs unmodified on the Knowledge Base page.
+   -------------------------------------------------------------------------- */
+
+/* It introduces the section, so it is set as one. h3-fixed left it at the same
+   2rem as the body headings it was meant to head. */
+.page[data-page="security"] .af-head {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tracking-h2);
+  margin-bottom: var(--space-12);
+}
+
+/* The toggle was a single pill bar centred over two cards, which lined up with
+   neither of them. It becomes the cards' own two columns — same widths, same
+   gap, same corner — so each label sits directly over the outcome it selects
+   and the pair reads as one control with the cards. */
+.af-flow2--split .af-toggle {
+  position: static;
+  margin: var(--space-6) auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+@media (min-width: 760px) {
+  .af-flow2--split .af-toggle { grid-template-columns: 1fr 1fr; }
+}
+.af-flow2--split .af-toggle-opt {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px var(--line);
+  text-align: center;
+  white-space: normal;
+}
+/* The unselected half is a plain ring, which is the same treatment its greyed
+   card gets underneath — the two read as one column that is off. */
+.af-flow2--split .af-toggle-opt:hover { background: var(--fill); }
+#af-tab-direct:checked ~ .af-panel .af-toggle .af-opt-direct:hover,
+#af-tab-kb:checked ~ .af-panel .af-toggle .af-opt-kb:hover { background: var(--af-cta-bg); }
+
+/* The card copy was at the bottom of the scale — 12px, set for a card that used
+   to float beside the drawing. At full width it reads as the page's body text. */
+.af-flow2--split .af-foot .af-bullets-col { padding: var(--space-6); }
+.af-flow2--split .af-foot .af-bullets-title {
+  font-size: var(--fs-body);
+  line-height: var(--lh-h3);
+  /* Sentence case at this size: the eyebrow's capitals and tracking are there
+     to make a 12px label legible, and only shout at 16. */
+  text-transform: none;
+  letter-spacing: var(--tracking-h3);
+  margin-bottom: var(--space-4);
+}
+.af-flow2--split .af-foot .af-bullets { gap: var(--space-3); }
+.af-flow2--split .af-foot .af-bullets li {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  gap: var(--space-3);
+}
+/* the mark keeps its proportion to the line it sits against */
+.af-flow2--split .af-foot .af-bullet-icon {
+  width: 15px;
+  height: 15px;
+  margin-top: 0.2em;
+}
