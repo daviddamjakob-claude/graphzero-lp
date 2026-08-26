@@ -125,6 +125,7 @@
    -------------------------------------------------------------------------- */
 .page[data-page="home"],
 .page[data-page="platform-b"],
+.page[data-page="platform-c"],
 .page[data-page="knowledge-base"],
 .page[data-page="security"] { --hl: #0000ff; }
 .hl,
@@ -2657,3 +2658,269 @@ plainest thing in the drawing rather than the most filled. */
 .area-card { display: none; }
 .areas__cards[data-area="strategy"] .area-card[data-area="strategy"],
 .areas__cards[data-area="technology"] .area-card[data-area="technology"] { display: grid; }
+
+
+/* ==========================================================================
+   Platform C - the reference landing page, with each of its carousels stopped
+   on one chosen layout. What the carousels stepped through is not carried
+   over, only the stop that was picked.
+   ========================================================================== */
+
+:root {
+  /* the strip's own timings: slower and softer than the page default, because
+     a panel opening is a shape changing rather than a colour */
+  --dur-strip: 800ms;
+  --ease-strip: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   The plate hero
+   -------------------------------------------------------------------------- */
+.hero--shot {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  /* up under the sticky header, then padded back off it */
+  margin-top: -72px;
+  padding-top: 72px;
+  color: var(--ink-invert);
+  --heading: var(--ink-invert);
+  --body: var(--ink-muted-invert);
+  --meta: rgba(255, 255, 255, 0.55);
+}
+/* The pale plate carries black copy. One class flips the whole set rather than
+   restyling each element. */
+.hero--shot.hero--light {
+  color: var(--ink);
+  --heading: var(--ink);
+  --body: var(--ink-muted);
+  --meta: rgba(0, 0, 0, 0.55);
+}
+.hero--shot .hero__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.hero--shot .hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(4rem, 13vh, 8rem) clamp(3rem, 9vh, 5.5rem);
+}
+.hero__controls {
+  position: absolute;
+  inset: 72px 0 auto 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-8);
+}
+@media (max-width: 760px) { .hero--shot { min-height: 92svh; } }
+
+.btn--wide {
+  border-radius: var(--radius-sm);
+  padding: 1.05rem 2.25rem;
+  font-size: var(--fs-tiny);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+/* Only in the wide layout: on a narrow screen the line it protects is not the
+   line that wraps. */
+.br-wide { display: none; }
+@media (min-width: 900px) { .br-wide { display: inline; } }
+
+/* --------------------------------------------------------------------------
+   The plate stepper
+   -------------------------------------------------------------------------- */
+.swap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  line-height: 1.4;
+}
+.swap__btn {
+  border: 0;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  color: var(--meta);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.swap__btn:hover { color: var(--heading); box-shadow: inset 0 0 0 1px var(--heading); }
+.swap__btn:focus-visible { outline: 2px solid var(--heading); outline-offset: 2px; }
+.swap__count { color: var(--meta); font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------------------
+   The full-bleed band
+   -------------------------------------------------------------------------- */
+.band { background: var(--page); }
+.band--dark { background: var(--surface-dark); }
+/* the white section above the band closes on the wider rhythm, so the colour
+   change does not land straight after a paragraph */
+.sec:has(+ .band) { padding-bottom: var(--section-lg); }
+
+.toolbox-link { padding-top: var(--space-12); }
+
+/* --------------------------------------------------------------------------
+   Challenge cells - the head is the grid's first cell rather than a band above
+   it, so heading and challenges share one set of rules.
+   -------------------------------------------------------------------------- */
+.cellgrid { display: grid; margin-inline: calc(var(--space-8) * -1); }
+.cellgrid__track { display: contents; }
+.cellgrid__head,
+.cellgrid .cell { padding: var(--space-8); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+/* the head opens the grid, so nothing is drawn above or beside it */
+.cellgrid__head {
+  border-top: 0; border-left: 0; padding-top: 0;
+  display: grid; gap: var(--space-6); align-content: start;
+}
+/* the head shares a column width with the challenges, so it steps down from the
+   full section heading to keep its lines from breaking mid-phrase */
+.cellgrid__head .h2 { font-size: clamp(1.875rem, 2.9vw, 2.75rem); }
+.cellgrid__head .lead { max-width: 40ch; font-size: var(--fs-body); }
+.cellgrid__head > .h2:first-child { padding-top: 0; }
+
+.cell { display: flex; flex-direction: column; gap: var(--space-3); }
+.cell__group { display: none; }
+.cell__title {
+  font-size: 1.375rem; line-height: var(--lh-h3); letter-spacing: var(--tracking-h3);
+  color: var(--heading); text-wrap: pretty;
+}
+.cell__body { max-width: 38ch; font-size: var(--fs-small); line-height: 1.6; color: var(--body); }
+/* the tags sit on the cell's bottom edge and carry its one piece of colour -
+   the accent, so it follows the identity rather than being a fixed blue */
+.cell__foot { margin-top: auto; padding-top: var(--space-10); }
+.cell__foot .chip-outline { background: none; color: var(--hl); box-shadow: inset 0 0 0 1px var(--hl); }
+
+/* One area on screen at a time. The open tab is recorded on the track and the
+   stylesheet decides from it which pair shows, so nothing is written onto the
+   cells themselves. */
+.cellgrid--tabs .lead__context,
+.cellgrid--tabs .lead__platform { display: none; }
+.cellgrid--tabs .cellgrid__tabs { margin-top: var(--space-8); }
+.cellgrid--tabs .cellgrid__track { display: grid; }
+.cellgrid--tabs .cell { display: none; }
+.cellgrid--tabs .cellgrid__track[data-tab="0"] .cell:nth-child(-n + 2),
+.cellgrid--tabs .cellgrid__track[data-tab="1"] .cell:nth-child(n + 3) { display: flex; }
+
+@media (min-width: 900px) {
+  .cellgrid--tabs { grid-template-columns: 1fr; margin-inline: 0; }
+  .cellgrid--tabs .cellgrid__head,
+  .cellgrid--tabs .cellgrid__tabs { padding-inline: 0; }
+  .cellgrid--tabs .cellgrid__track {
+    grid-template-columns: 1fr 1fr;
+    margin-top: var(--section-sm);
+  }
+  .cellgrid--tabs .cell { border: 0; }
+  /* the pair as two separate cards, which is what the second layout is */
+  .cellgrid--tabs-cards .cellgrid__track { gap: var(--space-4); border: 0; }
+  .cellgrid--tabs-cards .cell {
+    border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  /* the tag names the tab the card is filed under, so inside it is noise */
+  .cellgrid--tabs-cards .cell__foot { display: none; }
+}
+@media (max-width: 900px) {
+  .cellgrid { margin-inline: 0; }
+  .cellgrid__head,
+  .cellgrid .cell { border-left: 0; border-right: 0; border-bottom: 0; padding-left: 0; padding-right: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   The solution strip, broken into four blocks.
+
+   The flush row squeezes its neighbours; this one does not move at all. Each
+   panel is its own card and opens its body in place, so the row keeps a fixed
+   height and nothing shifts sideways as you cross it.
+   -------------------------------------------------------------------------- */
+.strip--split { height: 20rem; gap: var(--space-4); border-block: 0; }
+.strip--split .strip__panel {
+  position: relative;
+  border-left: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--line);
+  padding: var(--space-6);
+  grid-template-rows: 1fr auto auto;
+  align-content: stretch;
+}
+/* the squeeze belongs to the flush row; these panels hold their width */
+.strip--split:hover .strip__panel,
+.strip--split:focus-within .strip__panel,
+.strip--split:hover .strip__panel:hover,
+.strip--split:not(:hover) .strip__panel:focus-visible { flex-grow: 1; }
+.strip--split:hover .strip__panel:hover,
+.strip--split:not(:hover) .strip__panel:focus-visible { background: transparent; color: inherit; }
+.strip--split .strip__num { align-self: start; }
+.strip--split .strip__panel::after {
+  content: "\2197";
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  font-size: var(--fs-lead);
+  line-height: 1;
+  color: var(--heading);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.strip--split .strip__panel:is(:hover, :focus-visible)::after { opacity: 1; }
+/* max-height rather than display, so the body opens rather than appearing. The
+   delay on the way in and none on the way out means crossing the row does not
+   flicker every panel open in passing. */
+.strip--split .strip__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-strip) var(--ease-strip), opacity 180ms var(--ease-strip);
+}
+.strip--split .strip__panel:is(:hover, :focus-visible) .strip__body {
+  max-height: 9rem;
+  transition: max-height var(--dur-strip) var(--ease-strip), opacity 320ms var(--ease-strip) 420ms;
+}
+/* At rest the first panel stands open, so the row shows what it does before
+   anyone touches it. */
+@media (min-width: 901px) {
+  .strip--split:not(:hover):not(:focus-within) .strip__panel:first-child .strip__body { max-height: 9rem; }
+  .strip--split:not(:hover):not(:focus-within) .strip__panel:first-child::after { opacity: 1; }
+}
+@media (max-width: 900px) {
+  .strip--split { height: auto; flex-direction: column; }
+  .strip--split .strip__panel { grid-template-rows: none; align-content: start; }
+  .strip--split .strip__panel::after { display: none; }
+  .strip--split .strip__body { max-height: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Compliance as tall cards - the mark on top, the words on the bottom edge, so
+   three cards of different copy lengths still line up.
+   -------------------------------------------------------------------------- */
+/* Mark, title, note, then slack. The reference hangs the words off the card's
+   bottom edge, which lines up the last lines but leaves the three titles on
+   three different baselines, because the notes run to different lengths. The
+   spare height goes to a fourth row at the bottom instead, so every row above
+   it starts at the same place in all three cards. */
+.card--tall {
+  min-height: 15.4rem;
+  grid-template-rows: auto auto auto 1fr;
+  padding: var(--space-6);
+}
+.card--tall .card-foot { display: contents; }
+.card--tall .card-badge { grid-row: 1; }
+.card--tall .card-title { grid-row: 2; }
+.card--tall .card-note { grid-row: 3; }
+.card-badge { width: auto; height: 4.5rem; align-self: start; justify-self: start; }
+.card-foot { display: grid; gap: var(--space-2); }
+.card-title {
+  font-size: 1.25rem; line-height: var(--lh-h3); letter-spacing: var(--tracking-h3);
+  color: var(--heading); text-wrap: pretty;
+}
+.card-note { font-size: var(--fs-small); line-height: 1.5; color: var(--body); }

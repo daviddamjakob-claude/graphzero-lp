@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>graphzero | Platform C</title>
+<meta name="description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
+<meta property="og:title" content="graphzero | Platform C">
+<meta property="og:description" content="Our managed infrastructure enables in-house teams and integrators to deploy AI that is really powerful while keeping company knowledge sovereign.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="assets/design-system/styles.css">
+<link rel="stylesheet" href="assets/site.css?v=135">
+<link rel="icon" href="assets/graphzero-mark.svg?v=135" type="image/svg+xml">
+</head>
+<body data-surface="light">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page" data-page="platform-c">
+
+  <!-- The nav is ours, not the reference's: same header, same identity switch,
+       same sheet. Only what sits under it is copied. -->
+  <header class="site-header">
+    <div class="brand-switch" data-identity-switch>
+      <button class="brand-switch__arrow" type="button" data-identity-step="-1"
+              aria-label="Previous identity">&lsaquo;</button>
+      <a class="brand" href="#hero" title="/graphzero">
+        <span class="brand__slash">/</span><span class="brand__name">graphzero</span>
+      </a>
+      <button class="brand-switch__arrow" type="button" data-identity-step="1"
+              aria-label="Next identity">&rsaquo;</button>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="index.html">Platform</a>
+      <a href="platform-b.html">Platform B</a>
+      <a href="platform-c.html" aria-current="page">Platform C</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="security.html">Security</a>
+
+      <div class="nav-cta">
+        <a class="btn btn--hero" href="mailto:david@ascending.ai?subject=Ascending%20AI">Book a founder call</a>
+      </div>
+    </nav>
+
+    <div class="lang" role="group" aria-label="Language">
+      <button class="lang__opt" type="button" data-lang="en" aria-current="true">EN</button>
+      <button class="lang__opt" type="button" data-lang="de">DE</button>
+      <button class="lang__opt" type="button" data-lang="nl">NL</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO — a full-bleed plate running up under the sticky header. The type
+         reverses out of it, so the section re-declares the semantic colour
+         tokens rather than restyling each element; .hero--light flips them back
+         for the pale plate, which carries black copy.
+
+         Two plates rather than the reference's four: the arrows step between
+         the first and second only. -->
+    <section class="hero hero--shot" id="hero">
+      <img class="hero__img"
+           src="assets/media/hero-plate-1600.jpg"
+           srcset="assets/media/hero-plate-900.jpg 900w,
+                   assets/media/hero-plate-1600.jpg 1600w,
+                   assets/media/hero-plate-2157.jpg 2157w"
+           sizes="100vw" alt="" width="2157" height="1180" fetchpriority="high" decoding="async">
+      <div class="wrap hero__controls">
+        <div class="swap" id="hero-swap">
+          <button class="swap__btn" type="button" data-step="-1">
+            <span aria-hidden="true">&lt;</span><span class="vh">Previous plate</span>
+          </button>
+          <span class="swap__count" data-swap-count aria-hidden="true">1/2</span>
+          <button class="swap__btn" type="button" data-step="1">
+            <span aria-hidden="true">&gt;</span><span class="vh">Next plate</span>
+          </button>
+        </div>
+      </div>
+      <div class="wrap hero__inner">
+        <h1 class="display hero__title">The toolbox <br class="br-wide">to deploy enterprise AI</h1>
+        <p class="lead hero__lead">Our managed infrastructure enables in-house teams and integrators to deploy AI that is <strong>really powerful while keeping company knowledge sovereign.</strong> European by design, for AI transformations that actually work.</p>
+        <div class="hero__cta">
+          <a class="btn btn--wide" href="mailto:david@ascending.ai?subject=graphzero">Book a founder call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — CHALLENGES. The section head is the first cell of the grid rather
+         than a band above it, so the heading and the challenges share one set
+         of rules. Fixed on the reference's second layout: tabs, with the pair
+         under them drawn as separate cards. -->
+    <section class="wrap sec" id="challenges">
+      <div class="cellgrid cellgrid--tabs cellgrid--tabs-cards" id="challenge-grid">
+        <div class="cellgrid__head">
+          <h2 class="h2">Out-of-the-box AI is often insufficient.</h2>
+          <p class="lead"><span class="lead__context">Claude, ChatGPT, Copilot or Langdock are quickly implemented and bring advanced agentic capabilities. </span><span class="lead__gap">The gap to real impact is a focused strategy and organized change management.</span><span class="lead__platform"> Together with a middle layer platform that makes outcomes robust and keeps knowledge secure and sovereign.</span></p>
+        </div>
+        <div class="tabs cellgrid__tabs" id="challenge-tabs" role="tablist" aria-label="Challenges by area">
+          <button class="tab" type="button" role="tab" aria-selected="true" data-tab="0">Strategy &amp; Change Management</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-tab="1">Technology</button>
+        </div>
+        <div class="cellgrid__track" id="challenge-track" data-tab="0">
+          <div class="cell">
+            <span class="cell__group">Strategy &amp; Change Management</span>
+            <h3 class="cell__title">Self-usage without focus, little governance and unclear ROI</h3>
+            <p class="cell__body">Assistants arrive one licence at a time. Nobody owns the outcome, no one can say what it returned, and the business case never gets written.</p>
+            <div class="chip-row cell__foot"><span class="chip-outline">Strategy &amp; Change Management</span></div>
+          </div>
+          <div class="cell">
+            <span class="cell__group">Technology</span>
+            <h3 class="cell__title">Enterprise data in siloed systems</h3>
+            <p class="cell__body">The knowledge an answer needs is spread across systems that were never meant to be read together, so every tool starts by rebuilding the same integrations.</p>
+            <div class="chip-row cell__foot"><span class="chip-outline">Knowledge Base</span></div>
+          </div>
+          <div class="cell">
+            <span class="cell__group">Technology</span>
+            <h3 class="cell__title">Inaccurate and unreliable results</h3>
+            <p class="cell__body">Retrieval over loose documents returns something plausible for any question. Without structure behind it, an answer cannot be checked, only believed.</p>
+            <div class="chip-row cell__foot"><span class="chip-outline">Knowledge Base</span></div>
+          </div>
+          <div class="cell">
+            <h3 class="cell__title">Loss of control and exposure of sensitive data</h3>
+            <p class="cell__body">Content leaves for whichever model the tool ships with, under permissions the source system enforced and the assistant does not.</p>
+            <div class="chip-row cell__foot"><span class="chip-outline">Knowledge Base</span><span class="chip-outline">LLM</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — SOLUTION. Fixed on the reference's second layout: the flush row
+         broken into four separate blocks, each opening its body on hover. -->
+    <section class="wrap sec" id="solutions">
+      <h2 class="h2 sec-head">Empowering organizations to drive their AI transformation.</h2>
+      <p class="lead sec-head__lead sec-head__lead--full">Teams can focus on strategy &amp; change management &mdash; we make sure the technology is not the bottleneck and doesn&rsquo;t push timelines or budget.</p>
+
+      <div class="strip strip--split" id="solution-strip" style="margin-top:var(--space-12)">
+        <button class="strip__panel" type="button">
+          <span class="strip__num">01</span>
+          <span class="strip__title">Ready to deploy</span>
+          <span class="strip__body">We give you instantly what takes months of building &mdash; and even then is extremely difficult to deliver at highest security and functionality needs.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="strip__num">02</span>
+          <span class="strip__title">Maintenance at scale</span>
+          <span class="strip__body">We enable you to participate in maintenance at scale, in an AI ecosystem that is advancing at rapid speed &amp; complexity.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="strip__num">03</span>
+          <span class="strip__title">Data intelligence</span>
+          <span class="strip__body">Our platform can give you the data and synthesized insights to find and design the use cases that will deliver real business impact.</span>
+        </button>
+        <button class="strip__panel" type="button">
+          <span class="strip__num">04</span>
+          <span class="strip__title">Modular toolbox</span>
+          <span class="strip__body">You get just what you need: a knowledge base with integrations and ingestion that connects by MCP. The full platform with UI and agents in Slack and MS Teams. Or just integrations and ingestion, to build the rest yourself.</span>
+        </button>
+      </div>
+
+      <!-- Modules read down the left, visual on the right. -->
+      <h3 class="h3-fixed showcase__head" style="padding-top:calc(var(--section-lg) * 1.25)">A modular stack for enterprise AI. <br class="br-wide">Complete or one layer at a time.</h3>
+
+      <div class="showcase">
+        <div class="showcase__text">
+          <div class="showcase__list">
+            <div class="showcase__item">
+              <span class="showcase__num">Module 03</span>
+              <h4 class="showcase__title"><a class="showcase__link" href="knowledge-base.html">Knowledge Graph</a></h4>
+              <p class="small showcase__body">One knowledge base for people and agents, open over MCP: use the best of Claude, Copilot and ChatGPT, while the knowledge stays sovereign.</p>
+            </div>
+            <div class="showcase__item">
+              <span class="showcase__num">Module 02</span>
+              <h4 class="showcase__title">Search &amp; Agents</h4>
+              <p class="small showcase__body">The complete product: knowledge base, web UI, and agents in Teams and Slack on European infrastructure, enabling to design the workflows that bring most impact.</p>
+            </div>
+            <div class="showcase__item">
+              <span class="showcase__num">Module 01</span>
+              <h4 class="showcase__title">Integration &amp; Ingestion, as a service</h4>
+              <p class="small showcase__body">Seamless solutions to complex infrastructure challenges, consumed as a service.</p>
+            </div>
+          </div>
+        </div>
+
+        <figure class="showcase__visual">
+          <img src="assets/media/toolbox-visual-1400.jpg"
+               srcset="assets/media/toolbox-visual-800.jpg 800w,
+                       assets/media/toolbox-visual-1400.jpg 1400w"
+               sizes="(min-width: 900px) 55vw, 100vw"
+               alt="" width="1400" height="1386" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 03 — SECURITY & COMPLIANCE. The one inverted band on the page: .dark
+         re-declares the semantic tokens, so everything inside follows without
+         being restyled, and the section drops .wrap so the black runs the full
+         width with the container moved inside it.
+
+         Fixed on the reference's first view: runtime and inference side by
+         side, compliance standing underneath. -->
+    <section class="band band--dark dark" id="security">
+      <div class="wrap sec sec--pb">
+        <h2 class="h2 sec-head">Secure by design, sovereign by default.</h2>
+
+        <div class="picker split split--even" style="padding-top:var(--space-12)">
+          <div class="picker__group">
+            <span class="eyebrow eyebrow--accent">Runtime</span>
+            <ul class="opt-list">
+              <li>
+                <span class="opt__name">Our EU cloud</span>
+                <span class="opt__note">A dedicated single-tenant environment on EU infrastructure, operated by us.</span>
+              </li>
+              <li>
+                <span class="opt__name">Your cloud account</span>
+                <span class="opt__note">Runs in your own cloud account, in your region, under your controls.</span>
+              </li>
+              <li>
+                <span class="opt__name">Your data centre</span>
+                <span class="opt__note">On request: <span data-identity-name>graphzero</span> runs inside your own data centre, on hardware you control.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="picker__group picker__group--right">
+            <span class="eyebrow eyebrow--accent">Inference</span>
+            <ul class="opt-list">
+              <li>
+                <span class="opt__name">EU-hosted models</span>
+                <span class="opt__note">EU-hosted models process your content, inside the EU.</span>
+              </li>
+              <li>
+                <span class="opt__name">Self-hosted models</span>
+                <span class="opt__note">Open-weight models running beside the index, in whichever runtime you choose.</span>
+              </li>
+              <li>
+                <span class="opt__name">Your own keys</span>
+                <span class="opt__note">Inference runs on your existing model agreements, so AI spend stays on your contract, at your negotiated terms.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Compliance opens on --section-md rather than --space-12: it is a
+             separate beat from the view above, not a continuation. The marks
+             are the drawn ones, in currentColor, so they take the band's ink
+             instead of needing an inverted plate. -->
+        <div class="stack-16" style="padding-top:var(--section-md)">
+          <span class="eyebrow eyebrow--accent">Compliance</span>
+          <div class="grid-3">
+            <article class="card card--ring card--tall">
+              <svg class="mark card-badge" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="currentColor">
+                  <use href="#eu-star" transform="rotate(0 50 50)"/>
+                  <use href="#eu-star" transform="rotate(30 50 50)"/>
+                  <use href="#eu-star" transform="rotate(60 50 50)"/>
+                  <use href="#eu-star" transform="rotate(90 50 50)"/>
+                  <use href="#eu-star" transform="rotate(120 50 50)"/>
+                  <use href="#eu-star" transform="rotate(150 50 50)"/>
+                  <use href="#eu-star" transform="rotate(180 50 50)"/>
+                  <use href="#eu-star" transform="rotate(210 50 50)"/>
+                  <use href="#eu-star" transform="rotate(240 50 50)"/>
+                  <use href="#eu-star" transform="rotate(270 50 50)"/>
+                  <use href="#eu-star" transform="rotate(300 50 50)"/>
+                  <use href="#eu-star" transform="rotate(330 50 50)"/>
+                </g>
+                <text class="mark__word" x="50" y="53.5">GDPR</text>
+              </svg>
+              <div class="card-foot">
+                <h3 class="card-title">GDPR compliant</h3>
+                <p class="card-note">Customer data is processed in the EU and handled in line with GDPR.</p>
+              </div>
+            </article>
+            <article class="card card--ring card--tall">
+              <svg class="mark card-badge" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="currentColor">
+                  <use href="#eu-star" transform="rotate(0 50 50)"/>
+                  <use href="#eu-star" transform="rotate(30 50 50)"/>
+                  <use href="#eu-star" transform="rotate(60 50 50)"/>
+                  <use href="#eu-star" transform="rotate(90 50 50)"/>
+                  <use href="#eu-star" transform="rotate(120 50 50)"/>
+                  <use href="#eu-star" transform="rotate(150 50 50)"/>
+                  <use href="#eu-star" transform="rotate(180 50 50)"/>
+                  <use href="#eu-star" transform="rotate(210 50 50)"/>
+                  <use href="#eu-star" transform="rotate(240 50 50)"/>
+                  <use href="#eu-star" transform="rotate(270 50 50)"/>
+                  <use href="#eu-star" transform="rotate(300 50 50)"/>
+                  <use href="#eu-star" transform="rotate(330 50 50)"/>
+                </g>
+                <text class="mark__word mark__word--sm" x="50" y="45">EU AI</text>
+                <text class="mark__word mark__word--sm" x="50" y="62">ACT</text>
+              </svg>
+              <div class="card-foot">
+                <h3 class="card-title">EU AI Act-ready</h3>
+                <p class="card-note">Transparent AI interaction. No emotion recognition, no ranking of people, no individual-level analytics.</p>
+              </div>
+            </article>
+            <article class="card card--ring card--tall">
+              <svg class="mark card-badge" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="currentColor">
+                  <ellipse cx="44.1" cy="83.5" rx="2" ry="4.4" transform="rotate(10 44.1 83.5)"/>
+                  <ellipse cx="55.9" cy="83.5" rx="2" ry="4.4" transform="rotate(-10 55.9 83.5)"/>
+                  <ellipse cx="33.7" cy="79.8" rx="2" ry="4.4" transform="rotate(30 33.7 79.8)"/>
+                  <ellipse cx="66.3" cy="79.8" rx="2" ry="4.4" transform="rotate(-30 66.3 79.8)"/>
+                  <ellipse cx="24.9" cy="72.9" rx="2" ry="4.4" transform="rotate(50 24.9 72.9)"/>
+                  <ellipse cx="75.1" cy="72.9" rx="2" ry="4.4" transform="rotate(-50 75.1 72.9)"/>
+                  <ellipse cx="18.9" cy="63.6" rx="2" ry="4.4" transform="rotate(70 18.9 63.6)"/>
+                  <ellipse cx="81.1" cy="63.6" rx="2" ry="4.4" transform="rotate(-70 81.1 63.6)"/>
+                  <ellipse cx="16.3" cy="52.9" rx="2" ry="4.4" transform="rotate(90 16.3 52.9)"/>
+                  <ellipse cx="83.7" cy="52.9" rx="2" ry="4.4" transform="rotate(-90 83.7 52.9)"/>
+                  <ellipse cx="17.5" cy="41.9" rx="2" ry="4.4" transform="rotate(110 17.5 41.9)"/>
+                  <ellipse cx="82.5" cy="41.9" rx="2" ry="4.4" transform="rotate(-110 82.5 41.9)"/>
+                  <ellipse cx="22.4" cy="32.0" rx="2" ry="4.4" transform="rotate(130 22.4 32.0)"/>
+                  <ellipse cx="77.6" cy="32.0" rx="2" ry="4.4" transform="rotate(-130 77.6 32.0)"/>
+                  <ellipse cx="30.4" cy="24.4" rx="2" ry="4.4" transform="rotate(150 30.4 24.4)"/>
+                  <ellipse cx="69.6" cy="24.4" rx="2" ry="4.4" transform="rotate(-150 69.6 24.4)"/>
+                </g>
+                <text class="mark__word mark__word--sm" x="50" y="45">ISO</text>
+                <text class="mark__word mark__word--sm" x="50" y="62">27001</text>
+              </svg>
+              <div class="card-foot">
+                <h3 class="card-title">ISO 27001 <span class="note-line">(in progress)</span></h3>
+                <p class="card-note">Certification underway; our security management system follows the standard today.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <p class="toolbox-link"><a class="link-underline" href="security.html">The full security picture &rarr;</a></p>
+      </div>
+    </section>
+
+    <!-- 04 — TEAM & ECOSYSTEM -->
+    <section class="wrap sec sec--pb" id="team">
+      <div class="split split--start split--pt">
+        <h2 class="h2">Made in Europe, for Europe.</h2>
+        <div class="lead-group">
+          <p class="lead">We are a pan-European team of AI Engineers based in Amsterdam and Berlin. <span class="pop"><button class="pop__trigger" type="button" aria-expanded="false" aria-controls="pop-recruiting">Reach out to us</button><span class="pop__panel" id="pop-recruiting"><span class="pop__value">recruiting@ascending.ai</span><button class="btn pop__copy" type="button" data-copy="recruiting@ascending.ai">Copy email address</button></span></span> if you want to get in contact and discuss current job openings. We operate as an ecosystem.</p>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:var(--space-12)">
+        <a class="link-card" href="https://fd.nl/tech-en-innovatie/1598537/als-onze-kinderen-opgroeien-met-kunstmatige-intelligentie-wil-je-meer-controle-over-de-modellen" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">Founder Story</h3>
+            <p class="small">Portrait of <span data-identity-name>graphzero</span> Founder &amp; CEO Lennard Zwart and his ambitions with the company in Het Financieele Dagblad.</p>
+            <span class="vh">Opens fd.nl in a new tab</span>
+          </span>
+          <span class="link-card__media">
+            <img src="assets/media/founder-lennard-1200.jpg"
+                 sizes="(min-width: 900px) 30vw, 100vw"
+                 alt="Lennard Zwart, founder and CEO" width="1200" height="801" loading="lazy" decoding="async">
+          </span>
+        </a>
+        <a class="link-card" href="https://aithos.org/" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">Aithos Research Foundation</h3>
+            <p class="small">As part of the <span data-identity-name>graphzero</span> ecosystem we directly benefit from Aithos research on autonomy and pluralism in an age of increasingly powerful AI systems.</p>
+            <span class="vh">Opens aithos.org in a new tab</span>
+          </span>
+          <span class="link-card__media">
+            <img src="assets/media/eco-aithos-1200.jpg"
+                 sizes="(min-width: 900px) 30vw, 100vw"
+                 alt="" width="1200" height="800" loading="lazy" decoding="async">
+          </span>
+        </a>
+        <a class="link-card" href="https://thestack.ai/" target="_blank" rel="noopener">
+          <span class="link-card__body">
+            <h3 class="h4-card">The Stack AI Hub</h3>
+            <p class="small">Also as part of the <span data-identity-name>graphzero</span> ecosystem we benefit from the network and ecosystem around Amsterdam&rsquo;s new AI Hub &ldquo;The Stack&rdquo;.</p>
+            <span class="vh">Opens thestack.ai in a new tab</span>
+          </span>
+          <span class="link-card__media">
+            <img src="assets/media/eco-hub-1200.jpg"
+                 sizes="(min-width: 900px) 30vw, 100vw"
+                 alt="" width="1200" height="800" loading="lazy" decoding="async">
+          </span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap site-footer">
+    <span>© 2026 Ascending AI B.V. · Amsterdam, NL</span>
+    <div class="chip-row">
+      <span class="chip-outline">GDPR</span>
+      <span class="chip-outline">EU AI Act</span>
+    </div>
+  </footer>
+
+  <!-- The star is drawn once and placed twelve times in each of the two EU
+       marks above. -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs><path id="eu-star" d="M50.00 7.80 51.39 12.08 55.90 12.08 52.25 14.73 53.64 19.02 50.00 16.37 46.36 19.02 47.75 14.73 44.10 12.08 48.61 12.08Z"/></defs>
+  </svg>
+
+</div>
+
+<script src="assets/site.js?v=135" defer></script>
+</body>
+</html>

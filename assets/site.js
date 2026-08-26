@@ -796,3 +796,117 @@
 
   show(cards.getAttribute('data-area') || 'strategy', false);
 })();
+
+
+/* Hero plates. The arrows step between the two plates the fold has been tried
+   with. Each stop names its own image set, its intrinsic size - they are not
+   the same shape, and getting that wrong makes the hero jump as a plate decodes
+   - and whether the type reverses out of it.
+
+   The plate is fetched before it goes in. Assigning src directly leaves the
+   <img> empty until the new one arrives: a white hero, with white type on it
+   for a beat, because the tone flips at once while the picture takes a moment.
+   `load` rather than decode(), which never settles in a background tab; the
+   timeout is the same argument one step on, so a plate that stalls or 404s
+   cannot strand the carousel on the stop before it. */
+(function () {
+  'use strict';
+
+  var swap = document.getElementById('hero-swap');
+  var hero = document.getElementById('hero');
+  var img = hero && hero.querySelector('.hero__img');
+  if (!swap || !hero || !img) return;
+
+  var PLATES = [
+    { base: 'hero-plate', widths: [900, 1600, 2157], w: 2157, h: 1180 },
+    { base: 'hero-pale',  widths: [900, 1600, 2157], w: 2157, h: 1180, light: true }
+  ];
+
+  var count = swap.querySelector('[data-swap-count]');
+  var at = 0;
+  var pending = 0;
+
+  function url(plate, w) { return 'assets/media/' + plate.base + '-' + w + '.jpg'; }
+
+  function srcsetFor(plate) {
+    return plate.widths.map(function (w) { return url(plate, w) + ' ' + w + 'w'; }).join(', ');
+  }
+
+  function apply(plate) {
+    img.srcset = srcsetFor(plate);
+    img.src = url(plate, plate.widths[1]);
+    img.width = plate.w;
+    img.height = plate.h;
+    hero.classList.toggle('hero--light', !!plate.light);
+  }
+
+  function show(i) {
+    at = (i + PLATES.length) % PLATES.length;
+    var plate = PLATES[at];
+    var token = ++pending;
+
+    if (count) count.textContent = (at + 1) + '/' + PLATES.length;
+
+    function settle() {
+      if (token !== pending) return;
+      pending++;                /* so the losing callbacks stay dropped */
+      apply(plate);
+    }
+
+    var pre = new Image();
+    pre.sizes = img.sizes;
+    pre.onload = settle;
+    pre.onerror = settle;
+    pre.srcset = srcsetFor(plate);
+    pre.src = url(plate, plate.widths[1]);
+
+    if (pre.complete) settle();
+    else setTimeout(settle, 1200);
+  }
+
+  swap.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-step]');
+    if (!btn) return;
+    show(at + Number(btn.getAttribute('data-step')));
+  });
+
+  show(0);
+})();
+
+/* The challenge tabs. Only the open tab is recorded - on the track, as
+   data-tab - and the stylesheet decides from that which pair shows. */
+(function () {
+  'use strict';
+
+  var tabs = document.getElementById('challenge-tabs');
+  var track = document.getElementById('challenge-track');
+  if (!tabs || !track) return;
+
+  var buttons = [].slice.call(tabs.querySelectorAll('[data-tab]'));
+
+  function show(which, focus) {
+    track.setAttribute('data-tab', which);
+    buttons.forEach(function (b) {
+      var open = b.getAttribute('data-tab') === which;
+      b.setAttribute('aria-selected', open);
+      b.tabIndex = open ? 0 : -1;
+      if (open && focus) b.focus();
+    });
+  }
+
+  tabs.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-tab]');
+    if (btn) show(btn.getAttribute('data-tab'), false);
+  });
+
+  tabs.addEventListener('keydown', function (e) {
+    var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    var i = buttons.indexOf(document.activeElement);
+    if (i < 0) return;
+    show(buttons[(i + step + buttons.length) % buttons.length].getAttribute('data-tab'), true);
+  });
+
+  show('0', false);
+})();
