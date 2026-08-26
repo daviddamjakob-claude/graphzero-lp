@@ -1693,10 +1693,20 @@ section[id] { scroll-margin-top: calc(var(--header-h) + var(--space-8)); }
    has neither, so it was stacking 48px on top of the section's 128px and
    opening a chasm between the fold and the first line under it. */
 #layers .sec-head { padding-top: 0; }
-#layers .sec-head {
+#layers .sec-head,
+#capabilities .h2 {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
   letter-spacing: var(--tracking-h3);
+}
+/* Knowledge Base B's capabilities heading is the section's own title now, so it
+   runs at the section size there. #capabilities is an id, not a page, and
+   pulling the rule apart for that page took the Knowledge Base and Knowledge
+   Base 3 headings up with it. */
+.page[data-page="security"] #capabilities .h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tracking-h2);
 }
 
 /* The claim over the drawing rather than beside it. The pair capped the title
@@ -3108,4 +3118,38 @@ plainest thing in the drawing rather than the most filled. */
   width: 15px;
   height: 15px;
   margin-top: 0.2em;
+}
+
+
+/* --------------------------------------------------------------------------
+   Knowledge Base 3's fold.
+
+   .hero--stack was re-tuned for the Platform fold when the two heroes were
+   swapped: ranged left, no measure cap, and running at the full display size.
+   This page is the fold as it was before that — centred, capped at 22ch and a
+   step down from display — so it takes those rules back for itself rather than
+   inheriting the Platform's.
+   -------------------------------------------------------------------------- */
+.page[data-page="knowledge-base-3"] .hero--stack .hero__inner--stack {
+  justify-items: center;
+  text-align: center;
+}
+.page[data-page="knowledge-base-3"] .hero--stack .hero__title {
+  font-size: clamp(2.25rem, 4.7vw, 3.75rem);
+  max-width: 22ch;
+}
+.page[data-page="knowledge-base-3"] .hero--stack .hero__lead { max-width: 54ch; }
+.page[data-page="knowledge-base-3"] .hero--stack .hero__title,
+.page[data-page="knowledge-base-3"] .hero--stack .hero__lead { margin-inline: auto; }
+/* Below the split's width the cap only forces a break the column already makes. */
+@media (max-width: 900px) {
+  .page[data-page="knowledge-base-3"] .hero--stack .hero__title { max-width: none; }
+}
+/* On a phone the fold's title runs off .hero .display's own narrow ramp. In the
+   source that rule simply came later and won the tie; here the page scope
+   out-ranks it, so the step down has to be stated. */
+@media (max-width: 760px) {
+  .page[data-page="knowledge-base-3"] .hero--stack .hero__title {
+    font-size: clamp(1.75rem, 9.15vw, 4.5rem);
+  }
 }
