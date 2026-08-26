@@ -2840,9 +2840,15 @@ plainest thing in the drawing rather than the most filled. */
 /* --------------------------------------------------------------------------
    The solution strip, broken into four blocks.
 
-   The flush row squeezes its neighbours; this one does not move at all. Each
-   panel is its own card and opens its body in place, so the row keeps a fixed
-   height and nothing shifts sideways as you cross it.
+   It still squeezes: the open panel takes 2.6 of the row and the other three
+   drop to 0.6, exactly as the flush version does. What changes is the shape —
+   each panel is its own rounded card with a hairline, and its body opens in
+   place rather than the panel simply widening.
+
+   The open panel carries a photographic plate behind a scrim, not a flat
+   ground. One image spans the row: each panel offsets it by its own position,
+   so the four sample different parts of the same picture rather than each
+   repeating it.
    -------------------------------------------------------------------------- */
 .strip--split { height: 20rem; gap: var(--space-4); border-block: 0; }
 .strip--split .strip__panel {
@@ -2853,14 +2859,73 @@ plainest thing in the drawing rather than the most filled. */
   padding: var(--space-6);
   grid-template-rows: 1fr auto auto;
   align-content: stretch;
+  transition: flex-grow var(--dur-strip) var(--ease-strip);
+  --plate: url("media/panel-teal.jpg");
+  --row-w: min(var(--container), 100vw - var(--gutter) * 2);
+  --open-w: calc(var(--row-w) * 0.62);
+  --plate-w: calc(var(--open-w) * 4);
+  --plate-off: 0px;
+  --scrim: linear-gradient(to top,
+      rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.82) 34%,
+      rgba(0, 0, 0, 0.35) 66%, rgba(0, 0, 0, 0) 90%);
 }
-/* the squeeze belongs to the flush row; these panels hold their width */
-.strip--split:hover .strip__panel,
-.strip--split:focus-within .strip__panel,
-.strip--split:hover .strip__panel:hover,
-.strip--split:not(:hover) .strip__panel:focus-visible { flex-grow: 1; }
-.strip--split:hover .strip__panel:hover,
-.strip--split:not(:hover) .strip__panel:focus-visible { background: transparent; color: inherit; }
+.strip--split .strip__panel:nth-child(2) { --plate-off: calc(var(--open-w) * -1); }
+.strip--split .strip__panel:nth-child(3) { --plate-off: calc(var(--open-w) * -2); }
+.strip--split .strip__panel:nth-child(4) { --plate-off: calc(var(--open-w) * -3); }
+
+/* The plate is a layer of its own rather than the panel's background, so it can
+   fade independently of the ground and the hairline stays drawn over it. */
+.strip--split .strip__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--surface-dark-soft);
+  background-image: var(--scrim), var(--plate);
+  background-size: cover, var(--plate-w) 100%;
+  background-position: center, var(--plate-off) center;
+  background-repeat: no-repeat, no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-strip) var(--ease-strip);
+}
+.strip--split:hover .strip__panel:hover::before,
+.strip--split:not(:hover) .strip__panel:focus-visible::before { opacity: 1; }
+/* the copy rides above the plate */
+.strip--split .strip__num,
+.strip--split .strip__title,
+.strip--split .strip__body { position: relative; z-index: 1; }
+
+/* This site's strip colours its copy from the absolute tokens (--ink,
+   --ink-muted), so the semantic flip an active panel performs never reached it
+   and the open panel kept black type over its own dark plate. Reading the
+   semantic tokens instead is what makes the flip arrive. The pairs of selectors
+   are there to out-rank the base's own hover overrides, which force a slightly
+   different muted tone on the number than the reference uses. */
+.strip--split .strip__num,
+.strip--split:hover .strip__panel:hover .strip__num,
+.strip--split:not(:hover) .strip__panel:focus-visible .strip__num { color: var(--meta); }
+.strip--split .strip__title,
+.strip--split:hover .strip__panel:hover .strip__title,
+.strip--split:not(:hover) .strip__panel:focus-visible .strip__title { color: var(--heading); }
+.strip--split .strip__body,
+.strip--split:hover .strip__panel:hover .strip__body,
+.strip--split:not(:hover) .strip__panel:focus-visible .strip__body { color: var(--body); }
+/* The hairline does not invert with the type: the active panel's ring is the
+   page's own hairline in the reference, drawn over the plate. */
+.strip--split .strip__panel { box-shadow: inset 0 0 0 1px var(--hairline); }
+
+/* At rest the row is not neutral: the first panel is already the open one, so
+   the layout shows what it does before anyone touches it. */
+@media (min-width: 901px) {
+  .strip--split:not(:hover):not(:focus-within) .strip__panel { flex-grow: 0.6; }
+  .strip--split:not(:hover):not(:focus-within) .strip__panel:first-child {
+    flex-grow: 2.6;
+    --heading: var(--ink-invert);
+    --body: var(--ink-muted-invert);
+    --meta: rgba(255, 255, 255, 0.55);
+  }
+  .strip--split:not(:hover):not(:focus-within) .strip__panel:first-child::before { opacity: 1; }
+}
 .strip--split .strip__num { align-self: start; }
 .strip--split .strip__panel::after {
   content: "\2197";
@@ -2895,7 +2960,8 @@ plainest thing in the drawing rather than the most filled. */
 @media (max-width: 900px) {
   .strip--split { height: auto; flex-direction: column; }
   .strip--split .strip__panel { grid-template-rows: none; align-content: start; }
-  .strip--split .strip__panel::after { display: none; }
+  .strip--split .strip__panel::after,
+  .strip--split .strip__panel::before { display: none; }
   .strip--split .strip__body { max-height: none; }
 }
 
@@ -2924,3 +2990,42 @@ plainest thing in the drawing rather than the most filled. */
   color: var(--heading); text-wrap: pretty;
 }
 .card-note { font-size: var(--fs-small); line-height: 1.5; color: var(--body); }
+
+
+/* --------------------------------------------------------------------------
+   Platform C against the reference, measured rather than eyeballed.
+
+   Four places where this site's own rules were quietly winning over the copied
+   layout. Each is scoped to the page, so the house rules they override stay in
+   force everywhere else.
+   -------------------------------------------------------------------------- */
+:root { --surface-dark-soft: #232323; }
+
+/* .hero:not(.hero--stack) .hero__inner is (0,3,0) and was out-ranking the
+   plate hero's own padding, which is shorter at the bottom than the top. */
+.page[data-page="platform-c"] .hero--shot .hero__inner {
+  padding-block: clamp(4rem, 13vh, 8rem) clamp(3rem, 9vh, 5.5rem);
+}
+/* The house lead is held to 42ch, which broke the reference's three-line lead
+   onto four. There it runs to the body measure. */
+.page[data-page="platform-c"] .hero--shot .hero__lead { max-width: 64ch; }
+
+/* The house radius is 1.5rem; the reference's visual is almost square-cornered,
+   which is what keeps it reading as a picture rather than a card. */
+.page[data-page="platform-c"] .showcase__visual { border-radius: 4px; }
+
+/* Every other page on this site desaturates the media in a link card. These are
+   the reference's photographs and they are in colour there. */
+.page[data-page="platform-c"] .link-card__media img { filter: none; }
+
+/* Not an even split. The inference column carries the longer set and was one
+   line short of fitting; the reference gives the right side a little more and
+   both sides end up with headroom. */
+@media (min-width: 900px) {
+  .page[data-page="platform-c"] .picker { grid-template-columns: 0.95fr 1.05fr; }
+}
+
+/* .mark carries the standing gap it needs in the compliance list on the
+   Platform page. Inside a card the row below is placed by the grid, so that gap
+   is measured twice. */
+.card-badge.mark { margin-bottom: 0; }

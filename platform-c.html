@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="assets/design-system/styles.css">
-<link rel="stylesheet" href="assets/site.css?v=135">
-<link rel="icon" href="assets/graphzero-mark.svg?v=135" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=136">
+<link rel="icon" href="assets/graphzero-mark.svg?v=136" type="image/svg+xml">
 </head>
 <body data-surface="light">
 
@@ -67,12 +67,15 @@
 
          Two plates rather than the reference's four: the arrows step between
          the first and second only. -->
-    <section class="hero hero--shot" id="hero">
+    <section class="hero hero--shot hero--light" id="hero">
+      <!-- The markup carries the first plate and its tone, so the fold paints
+           right on the first frame rather than starting dark and flipping once
+           the script runs. -->
       <img class="hero__img"
-           src="assets/media/hero-plate-1600.jpg"
-           srcset="assets/media/hero-plate-900.jpg 900w,
-                   assets/media/hero-plate-1600.jpg 1600w,
-                   assets/media/hero-plate-2157.jpg 2157w"
+           src="assets/media/hero-pale-1600.jpg"
+           srcset="assets/media/hero-pale-900.jpg 900w,
+                   assets/media/hero-pale-1600.jpg 1600w,
+                   assets/media/hero-pale-2157.jpg 2157w"
            sizes="100vw" alt="" width="2157" height="1180" fetchpriority="high" decoding="async">
       <div class="wrap hero__controls">
         <div class="swap" id="hero-swap">
@@ -404,6 +407,6 @@
 
 </div>
 
-<script src="assets/site.js?v=135" defer></script>
+<script src="assets/site.js?v=136" defer></script>
 </body>
 </html>

@@ -818,8 +818,8 @@
   if (!swap || !hero || !img) return;
 
   var PLATES = [
-    { base: 'hero-plate', widths: [900, 1600, 2157], w: 2157, h: 1180 },
-    { base: 'hero-pale',  widths: [900, 1600, 2157], w: 2157, h: 1180, light: true }
+    { base: 'hero-pale',  widths: [900, 1600, 2157], w: 2157, h: 1180, light: true },
+    { base: 'hero-plate', widths: [900, 1600, 2157], w: 2157, h: 1180 }
   ];
 
   var count = swap.querySelector('[data-swap-count]');
