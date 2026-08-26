@@ -127,6 +127,7 @@
 .page[data-page="platform-b"],
 .page[data-page="platform-c"],
 .page[data-page="knowledge-base"],
+.page[data-page="knowledge-base-3"],
 .page[data-page="security"] { --hl: #0000ff; }
 .hl,
 .brand__slash { color: var(--hl, inherit); }
